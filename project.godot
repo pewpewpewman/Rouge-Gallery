@@ -1,0 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Rouge Gallery"
+run/main_scene="res://main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GameplaySignals="*res://gameplay_signals.gd"
+
+[layer_names]
+
+2d_physics/layer_1="gunshots"
+
+[shader_globals]
+
+bulletHoleSize={
+"type": "float",
+"value": 0.1
+}
