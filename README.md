@@ -1,0 +1,1 @@
+Hello. This is the repo for a little game im working on. I have made this repo public so some friends of mine can easily access it. dear god please do not think of anything in here as professional level code
