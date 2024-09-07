@@ -1,5 +1,6 @@
 #Component for an object getting shot and setting signals to react
-#To use this component, you must make children editable to change the hitbox
+#To use this component, add collision shapes and add them to the array of hitboxes
+class_name ShootableComponent #shootable component is registered as a class so it can be used in exports
 extends Node2D
 
 #Children References
@@ -9,14 +10,12 @@ extends Node2D
 signal was_shot(player : PlayerCharacter) #passing around the player like this may be bad
 
 #General Use Vars
-@export var hitboxes : Array[CollisionShape2D]
+@export var hitbox : CollisionShape2D
 var aimedAt : bool = false
 
 func _ready() -> void:
-	assert(hitboxes.size() != 0, "Shootable Component needs hitboxes!")
-	for hitbox : CollisionShape2D in hitboxes:
-		assert(hitbox != null, "Hitboxes array must be filled with valid collision shapes!")
-		hitbox.reparent(shootingArea)
+	assert(hitbox != null, "Hitbox must have a valid collision shapes!")
+	hitbox.reparent(shootingArea)
 	shootingArea.area_entered.connect(_on_area_entered)
 	shootingArea.area_exited.connect(_on_area_exited)
 	GameplaySignals.player_shot.connect(_on_shot)
@@ -29,5 +28,4 @@ func _on_area_exited(area : Area2D):
 
 func _on_shot(player : PlayerCharacter):
 	if aimedAt:
-		print("ARG IVE BEEN SHOT!")
 		was_shot.emit(player)

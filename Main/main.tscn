@@ -8,6 +8,13 @@
 script = ExtResource("1_x2uxd")
 
 [node name="BasicShootable" parent="." instance=ExtResource("2_5o2od")]
-position = Vector2(629, 261)
+position = Vector2(417, 156)
+rotation = -0.785397
+
+[node name="BasicShootable2" parent="." instance=ExtResource("2_5o2od")]
+position = Vector2(184, 146)
+
+[node name="BasicShootable3" parent="." instance=ExtResource("2_5o2od")]
+position = Vector2(763, 346)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_po1ka")]

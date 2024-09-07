@@ -7,14 +7,22 @@ extends Node2D
 @onready var firingArea : Area2D = $FiringArea
 @onready var firingHitboxShape = $FiringArea/FiringHitboxShape
 
+#General Purpose Vars
+var canShoot : bool = true
+
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	$ShotCooldown.timeout.connect(_on_shot_cooldown)
 
 func _process(delta : float) -> void:
-	pass
+	if (canShoot && Input.is_action_pressed("fireGun")):
+		GameplaySignals.player_shot.emit(self)
+		canShoot = false
+		$ShotCooldown.start()
 
 func _input(event : InputEvent) -> void:
 	if (event is InputEventMouseMotion):
 		self.position = event.position
-	if (event is InputEventMouseButton and event.pressed):
-		GameplaySignals.player_shot.emit(self)
+
+func _on_shot_cooldown():
+	canShoot = true
