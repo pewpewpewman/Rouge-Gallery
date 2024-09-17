@@ -5,24 +5,29 @@ extends Node2D
 #Children References
 @onready var reticle : Sprite2D = $Reticle
 @onready var firingArea : Area2D = $FiringArea
-@onready var firingHitboxShape = $FiringArea/FiringHitboxShape
+@onready var firingHitboxShape : CollisionShape2D = $FiringArea/FiringHitboxShape
+@onready var reticleRing : Sprite2D = $ReticleRing
+@onready var shotCooldown : Timer = $ShotCooldown
 
 #General Purpose Vars
 var canShoot : bool = true
+var shotCooldownTime : float = 0.3 #measureed in seconds
 
 func _ready() -> void:
-	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
-	$ShotCooldown.timeout.connect(_on_shot_cooldown)
+	shotCooldown.timeout.connect(_on_shot_cooldown)
+	shotCooldown.wait_time = shotCooldownTime
 
 func _process(delta : float) -> void:
-	if (canShoot && Input.is_action_pressed("fireGun")):
-		GameplaySignals.player_shot.emit(self)
-		canShoot = false
-		$ShotCooldown.start()
+	var ReticleRingScale : float = shotCooldown.time_left / shotCooldownTime
+	reticleRing.scale = Vector2(ReticleRingScale, ReticleRingScale)
 
 func _input(event : InputEvent) -> void:
 	if (event is InputEventMouseMotion):
 		self.position = event.position
+	elif(canShoot && event.is_action_pressed("fire_gun")):
+		GameplaySignals.player_shot.emit(self)
+		shotCooldown.start()
+		canShoot = false
 
-func _on_shot_cooldown():
+func _on_shot_cooldown() -> void:
 	canShoot = true

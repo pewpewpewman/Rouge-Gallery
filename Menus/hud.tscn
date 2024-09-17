@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cksvlh028c7ka"]
+
+[ext_resource type="Script" path="res://Menus/hud.gd" id="1_7b15j"]
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7b15j")
+
+[node name="DebugInfo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.222
+anchor_bottom = 0.198
+offset_right = 0.255981
+offset_bottom = -0.304016
+
+[node name="ScoreCounter" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.178
+anchor_right = 0.2
+anchor_bottom = 0.444
+offset_top = -0.160004
+offset_bottom = 0.319977

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://caqp5vh4msyfa"]
+
+[ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="1_r1n6s"]
+
+[node name="BulletHoleSpriteComponent" type="Node2D"]
+script = ExtResource("1_r1n6s")

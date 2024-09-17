@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3kk540oalq0n"]
+
+[ext_resource type="Script" path="res://stage.gd" id="1_njkjx"]
+
+[node name="Stage" type="Node"]
+script = ExtResource("1_njkjx")
+
+[node name="NormalTargetSpawn" type="Timer" parent="."]
+autostart = true

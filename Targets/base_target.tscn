@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhvwaqhy5mi32"]
+
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_rljyf"]
+[ext_resource type="PackedScene" uid="uid://crtr17w3ak6vg" path="res://Components/shootable_component.tscn" id="2_6ubso"]
+[ext_resource type="Script" path="res://Targets/base_target.gd" id="2_ls0ot"]
+[ext_resource type="PackedScene" uid="uid://caqp5vh4msyfa" path="res://Components/Bullet Holes/bullet_hole_sprite_component.tscn" id="3_15kn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ogme"]
+size = Vector2(128, 128)
+
+[node name="BaseTarget" type="Sprite2D" node_paths=PackedStringArray("shootableComponent")]
+y_sort_enabled = true
+texture_repeat = 2
+position = Vector2(-4.76837e-07, -2.38419e-07)
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("1_rljyf")
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("2_ls0ot")
+shootableComponent = NodePath("ShootableComponent")
+
+[node name="ShootableComponent" parent="." node_paths=PackedStringArray("hitbox") instance=ExtResource("2_6ubso")]
+position = Vector2(0, -3.8147e-06)
+hitbox = NodePath("ShootingHitbox")
+
+[node name="ShootingHitbox" type="CollisionShape2D" parent="ShootableComponent"]
+position = Vector2(-6.35783e-06, -6.35782e-07)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_7ogme")
+
+[node name="BulletHoleComponent" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim") instance=ExtResource("3_15kn2")]
+position = Vector2(0, -3.8147e-06)
+shootableComponent = NodePath("../ShootableComponent")
+holeVictim = NodePath("..")

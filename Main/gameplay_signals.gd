@@ -2,3 +2,4 @@
 extends Node
 
 signal player_shot(player : PlayerCharacter)
+signal target_shot(target : BaseTarget)

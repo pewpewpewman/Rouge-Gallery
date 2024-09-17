@@ -20,12 +20,12 @@ func _ready() -> void:
 	shootingArea.area_exited.connect(_on_area_exited)
 	GameplaySignals.player_shot.connect(_on_shot)
 
-func _on_area_entered(area : Area2D):
+func _on_area_entered(area : Area2D) -> void:
 	aimedAt = true
 
-func _on_area_exited(area : Area2D):
+func _on_area_exited(area : Area2D) -> void:
 	aimedAt = false
 
-func _on_shot(player : PlayerCharacter):
+func _on_shot(player : PlayerCharacter) -> void:
 	if aimedAt:
 		was_shot.emit(player)
