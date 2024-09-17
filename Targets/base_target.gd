@@ -29,8 +29,10 @@ func _on_was_shot(player : PlayerCharacter):
 func _on_destroyed():
 	destroyed = true
 	dragger.remote_path = ""
-	
-	#Get a random direction for the dying animation
+	play_death_anim()
+ 
+func play_death_anim():
+		#Get a random direction for the dying animation
 	var deathDirection : int = randi()
 	if deathDirection % 2 == 0:
 		deathDirection = -1
@@ -55,4 +57,3 @@ func _on_destroyed():
 	tween.parallel()
 	tween.tween_property(self, "rotation", 4.0 * PI * -deathDirection, deathAnimLength).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.finished.connect(queue_free)
- 

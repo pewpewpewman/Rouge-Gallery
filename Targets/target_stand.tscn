@@ -1,20 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://kvws4ujrc53u"]
 
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_bgcbf"]
+[ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_sxej3"]
 [ext_resource type="Script" path="res://Targets/target_stand.gd" id="2_kmxxu"]
 
 [node name="TargetStand" type="Sprite2D"]
 y_sort_enabled = true
 texture_repeat = 2
-scale = Vector2(0.125, 1)
-texture = ExtResource("1_bgcbf")
-offset = Vector2(0, 64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_sxej3")
+centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 128, 128)
+region_rect = Rect2(0, 0, 96, 632)
 script = ExtResource("2_kmxxu")
 
 [node name="TargetDragger" type="RemoteTransform2D" parent="."]
 editor_description = "Used to control the movement of the target up until its shot"
 y_sort_enabled = true
+position = Vector2(48, 0)
 update_rotation = false
 update_scale = false

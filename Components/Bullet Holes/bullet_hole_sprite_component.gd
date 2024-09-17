@@ -16,7 +16,7 @@ func _ready() -> void:
 
 #it deeplt hurts my soul to do this, but for some reason _set() is not affected by it's attached object being changed
 func _process(delta: float) -> void:
-	holeVictimSprite.material.set_shader_parameter(imageScaleStringName, holeVictimSprite.global_scale)
+	holeVictimSprite.material.set_shader_parameter(imageScaleStringName, holeVictimSprite.get_rect().size * holeVictimSprite.global_scale)
 
 func _on_was_shot(player : PlayerCharacter) -> void:
 	var holeVictimSize : Vector2 = holeVictimSprite.get_rect().size * holeVictimSprite.global_scale

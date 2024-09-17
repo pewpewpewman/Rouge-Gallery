@@ -39,9 +39,9 @@ func _on_normal_target_spawn_timer_timeout() -> void:
 			targetStandDir = -1
 		else:
 			targetStandDir = 1
-			
+		
 		targetStand.position = streamSpawnPos[i]
-		targetStand.scale.y = (screenSize.y - targetStand.position.y) / targetStand.texture.get_height()
+		targetStand.region_rect.size.y = (screenSize.y - streamSpawnPos[i].y) / targetStand.scale.y
 		
 		target.z_index = numStreams - i
 		targetStand.z_index = numStreams - i

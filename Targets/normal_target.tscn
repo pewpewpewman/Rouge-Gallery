@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://crjqxgw0iewr0"]
+[gd_scene load_steps=5 format=3 uid="uid://crjqxgw0iewr0"]
 
 [ext_resource type="PackedScene" uid="uid://dhvwaqhy5mi32" path="res://Targets/base_target.tscn" id="1_qdtgu"]
+[ext_resource type="Texture2D" uid="uid://ccppo65x8yt0v" path="res://Targets/Target Assets/smiling_target.png" id="2_rq8we"]
 [ext_resource type="Script" path="res://Targets/normal_target.gd" id="2_uyk0m"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehoug"]
+resource_local_to_scene = true
+size = Vector2(342, 342)
+
 [node name="NormalTarget" instance=ExtResource("1_qdtgu")]
+position = Vector2(0, 0)
+scale = Vector2(0.187134, 0.187135)
+texture = ExtResource("2_rq8we")
 script = ExtResource("2_uyk0m")
+
+[node name="ShootableComponent" parent="." index="0"]
+position = Vector2(-171, 171)
+
+[node name="ShootingHitbox" parent="ShootableComponent" index="1"]
+position = Vector2(171, -171)
+shape = SubResource("RectangleShape2D_ehoug")
+
+[node name="BulletHoleComponent" parent="." index="1"]
+position = Vector2(-171, 171)

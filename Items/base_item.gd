@@ -1,10 +1,7 @@
 #Base class for items
+#Item classes are used to describe the behavior of an item
 class_name ItemBase
 extends Node
-
-static var itemName : StringName = "default item name"
-static var desc : StringName = "default item decs"
-static var numStacks : int = 0
 
 func on_pickup() -> void:
 	print("Default item pick up")
