@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	holeVictimSprite.material.set_shader_parameter(imageScaleStringName, holeVictimSprite.get_rect().size * holeVictimSprite.global_scale)
 
 func _on_was_shot(player : PlayerCharacter) -> void:
-	var holeVictimSize : Vector2 = holeVictimSprite.get_rect().size * holeVictimSprite.global_scale
+	var holeVictimSize : Vector2 = holeVictimSprite.get_rect().size * holeVictimSprite.global_scale / Vector2(holeVictimSprite.hframes, holeVictimSprite.vframes)
 	
 	# player.global_position - holeVictimSprite.global_position gets you a vector pointing to where on the sprite the shot occured
 	# .roated(-holeVictimSprite.global_rotation) is to correct the difference vector so we're basically working in unrotated space

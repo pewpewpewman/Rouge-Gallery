@@ -24,7 +24,7 @@ func _on_normal_target_spawn_timer_timeout() -> void:
 	for i : int in numStreams:
 		
 		var target : NormalTarget = normalTargetScene.instantiate()
-		var targetStand : TargetStand = targetStandScene.instantiate()
+		var targetStand : Sprite2D = targetStandScene.instantiate()
 		var targetDragger : RemoteTransform2D = targetStand.get_node("TargetDragger")
 		
 		var targetStandDir : int
@@ -65,6 +65,6 @@ func fill_stream_spawn_pos() -> void:
 		var halfScreen : int = screenSize.x / 2.0
 		# + 20 * direction to account for target srite size; could need changing
 		var posX : int = halfScreen + halfScreen * direction + 20 * direction
-		var posY : int = screenSize.y - (i * screenSize.y / 2.0 / numStreams) - 50
+		var posY : int = screenSize.y - (i * screenSize.y / 3.0 / numStreams) - 50
 		var pos : Vector2 = Vector2(posX, posY)
 		streamSpawnPos[i] = pos

@@ -1,21 +1,26 @@
 [gd_scene load_steps=3 format=3 uid="uid://kvws4ujrc53u"]
 
-[ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_sxej3"]
-[ext_resource type="Script" path="res://Targets/target_stand.gd" id="2_kmxxu"]
+[ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_ryqwq"]
+[ext_resource type="Texture2D" uid="uid://fswlynkjlghn" path="res://Targets/Target Assets/broken_pole_top.png" id="2_gkv1g"]
 
 [node name="TargetStand" type="Sprite2D"]
 y_sort_enabled = true
 texture_repeat = 2
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("1_sxej3")
+position = Vector2(0, 31)
+scale = Vector2(0.239583, 0.200949)
+texture = ExtResource("1_ryqwq")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 96, 632)
-script = ExtResource("2_kmxxu")
+
+[node name="PoleTop" type="Sprite2D" parent="."]
+position = Vector2(48.913, -74.6457)
+scale = Vector2(0.773208, 1)
+texture = ExtResource("2_gkv1g")
 
 [node name="TargetDragger" type="RemoteTransform2D" parent="."]
 editor_description = "Used to control the movement of the target up until its shot"
 y_sort_enabled = true
-position = Vector2(48, 0)
+position = Vector2(48, -74.6457)
 update_rotation = false
 update_scale = false

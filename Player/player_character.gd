@@ -11,11 +11,20 @@ extends Node2D
 
 #General Purpose Vars
 var canShoot : bool = true
-var shotCooldownTime : float = 0.3 #measureed in seconds
+var shotCooldownTime : float = 1.0 #measureed in seconds
+
+#Item Vars
+var itemCollection : Array[ItemBase] = []
 
 func _ready() -> void:
+	ItemBase.playerRef = self
+	
 	shotCooldown.timeout.connect(_on_shot_cooldown)
 	shotCooldown.wait_time = shotCooldownTime
+	for i  : int in 15:
+		ItemDataBase.itemDict.sugary_sweets.pickup()
+		print(shotCooldownTime)
+
 
 func _process(delta : float) -> void:
 	var ReticleRingScale : float = shotCooldown.time_left / shotCooldownTime
@@ -26,7 +35,7 @@ func _input(event : InputEvent) -> void:
 		self.position = event.position
 	elif(canShoot && event.is_action_pressed("fire_gun")):
 		GameplaySignals.player_shot.emit(self)
-		shotCooldown.start()
+		shotCooldown.start(shotCooldownTime)
 		canShoot = false
 
 func _on_shot_cooldown() -> void:

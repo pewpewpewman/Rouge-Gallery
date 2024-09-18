@@ -13,6 +13,7 @@ var dragger : RemoteTransform2D
 #Death Animation Vars
 var deathCurve : Curve2D = Curve2D.new()
 var deathAnimationTime : float = 0.0
+@export var deathText : CompressedTexture2D
 
 func _ready() -> void:
 	shootableComponent.was_shot.connect(_on_was_shot)
@@ -29,6 +30,7 @@ func _on_was_shot(player : PlayerCharacter):
 func _on_destroyed():
 	destroyed = true
 	dragger.remote_path = ""
+	self.texture = deathText
 	play_death_anim()
  
 func play_death_anim():
@@ -40,7 +42,7 @@ func play_death_anim():
 		deathDirection = 1
 	
 	#Find death animation ending values
-	var deathAnimLength = 2.5
+	var deathAnimLength = 3.0
 	var deathMagnitudeHoriz : float = randf() * 50.0 + 100.0
 	var deathMagnitudeVert : float =  500.0
 	var screenSize : Vector2i = get_window().get_viewport().get_visible_rect().size
