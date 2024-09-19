@@ -1,18 +1,15 @@
-#An autoloaded singleton for holding the data of all objects
+#Singleton for holding all item data
 extends Node
 
-var itemScripts : PackedStringArray = [
-	
-	"sugary_sweets"
-	
-]
+@export var items : Array[ItemBase]
+var itemDict : Dictionary
 
-#Dictionary for all item instances; keys are the same as the item's script's name
-var itemDict : Dictionary = {}
+func _ready():
+	for i :int in items.size():
+		assert(!itemDict.has(items[i].itemID), "Item dictionary cannot add two of the same item!")
+		itemDict[items[i].itemID] = items[i]
+	print("Grand Dictionary of Items: \n", itemDict)
 
-func _ready() -> void:
-	var index : int = 0
-	for scriptName : String in itemScripts:
-		itemDict[scriptName] = load("res://Items/Item Scripts/" + scriptName + ".gd").new() as ItemBase
-		index += 1
-	print(itemDict)
+func pick_up_item(player : PlayerCharacter, itemID : ItemBase.ItemID):
+	assert(itemDict.has(itemID), "That item ID does not exist!")
+	itemDict[itemID].pickup(player)

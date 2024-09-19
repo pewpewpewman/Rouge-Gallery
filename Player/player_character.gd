@@ -17,13 +17,9 @@ var shotCooldownTime : float = 1.0 #measureed in seconds
 var itemCollection : Array[ItemBase] = []
 
 func _ready() -> void:
-	ItemBase.playerRef = self
-	
 	shotCooldown.timeout.connect(_on_shot_cooldown)
-	shotCooldown.wait_time = shotCooldownTime
-	for i  : int in 15:
-		ItemDataBase.itemDict.sugary_sweets.pickup()
-		print(shotCooldownTime)
+	
+	ItemDataBase.pick_up_item(self, ItemBase.ItemID.SUGARY_SWEETS)
 
 
 func _process(delta : float) -> void:

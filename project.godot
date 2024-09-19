@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+ItemDataBase="*res://Items/item_data_base.tscn"
 GameplaySignals="*res://Main/gameplay_signals.gd"
-ItemDataBase="*res://Items/item_data_base.gd"
 
 [display]
 

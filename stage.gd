@@ -53,7 +53,6 @@ func _on_normal_target_spawn_timer_timeout() -> void:
 		targetStandTween.finished.connect(targetStand.queue_free)
 		targetStandTween.finished.connect(target.queue_free)
 
-
 func fill_stream_spawn_pos() -> void:
 	for i : int in numStreams:
 		var direction : int

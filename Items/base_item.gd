@@ -3,22 +3,22 @@
 class_name ItemBase
 extends Resource
 
-#player reference for effects that modify player stats
-static var playerRef : PlayerCharacter
+enum ItemID
+{
+	NONE = 0,
+	SUGARY_SWEETS = 4
+}
 
-#vars unique to each item
 var itemName : StringName
 var itemDesc : StringName
-var numStacks : int = 0
 var itemIconLocation : StringName
+var numStacks : int = 0
+@export var itemID : ItemID = ItemID.NONE
 
-func _ready() -> void:
-	assert(numStacks == 0, "ITEM RESOURCES SHOULD ONLY BE INITALIZED ONCE")
-
-func pickup() -> void:
+func pickup(player : PlayerCharacter) -> void:
 	print("Picked up a " + itemName)
 	numStacks += 1
 
-func loss() -> void:
+func loss(player : PlayerCharacter) -> void:
 	print("Lost a " + itemName)
 	numStacks -= 1

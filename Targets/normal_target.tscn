@@ -5,9 +5,8 @@
 [ext_resource type="Script" path="res://Targets/normal_target.gd" id="2_uyk0m"]
 [ext_resource type="Texture2D" uid="uid://dxc744ikbvdft" path="res://Targets/Target Assets/death_of_target.png" id="4_ffxrf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehoug"]
-resource_local_to_scene = true
-size = Vector2(342, 342)
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7b3j"]
+radius = 171.0
 
 [node name="NormalTarget" instance=ExtResource("1_qdtgu")]
 position = Vector2(0, 0)
@@ -18,11 +17,11 @@ script = ExtResource("2_uyk0m")
 deathText = ExtResource("4_ffxrf")
 
 [node name="ShootableComponent" parent="." index="0"]
-position = Vector2(-171, 171)
+position = Vector2(0, 1.52588e-05)
 
 [node name="ShootingHitbox" parent="ShootableComponent" index="1"]
-position = Vector2(171, -171)
-shape = SubResource("RectangleShape2D_ehoug")
+position = Vector2(0, -3.05176e-05)
+shape = SubResource("CircleShape2D_e7b3j")
 
 [node name="BulletHoleComponent" parent="." index="1"]
-position = Vector2(-171, 171)
+position = Vector2(0, 1.52588e-05)
