@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cksvlh028c7ka"]
+[gd_scene load_steps=7 format=3 uid="uid://cksvlh028c7ka"]
 
 [ext_resource type="Script" path="res://Menus/hud.gd" id="1_7b15j"]
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="2_i6jjb"]
+[ext_resource type="Texture2D" uid="uid://cwvxtgc80pin2" path="res://Menus/Menu Assets/numberTileSheet.png" id="2_pv86v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nek0g"]
+atlas = ExtResource("2_pv86v")
+region = Rect2(0, 0, 100, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tiedn"]
+atlas = ExtResource("2_pv86v")
+region = Rect2(0, 0, 100, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idkuh"]
+atlas = ExtResource("2_pv86v")
+region = Rect2(0, 0, 100, 200)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -27,3 +41,53 @@ anchor_right = 0.2
 anchor_bottom = 0.444
 offset_top = -0.160004
 offset_bottom = 0.319977
+
+[node name="Timer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1024.0
+offset_top = 576.0
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Minute" type="TextureRect" parent="Timer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.25
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_nek0g")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Colon" type="TextureRect" parent="Timer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_right = 0.5
+anchor_bottom = 1.0
+texture = ExtResource("2_i6jjb")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="SecondTens" type="TextureRect" parent="Timer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.75
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_tiedn")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="SecondOnes" type="TextureRect" parent="Timer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("AtlasTexture_idkuh")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true

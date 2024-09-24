@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6a80053gtey2"]
+
+[ext_resource type="PackedScene" uid="uid://kvws4ujrc53u" path="res://Targets/target_stand.tscn" id="1_b1iwh"]
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="2_ap072"]
+[ext_resource type="PackedScene" uid="uid://cpla6qnn5a6qq" path="res://Player/player_character.tscn" id="2_hfacs"]
+[ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="4_napnp"]
+[ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="5_r4rgi"]
+
+[node name="Node" type="Node"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(692, 444)
+scale = Vector2(0.9375, 0.9375)
+texture = ExtResource("2_ap072")
+
+[node name="BulletHoleSpriteComponent" type="Node" parent="Icon" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+script = ExtResource("4_napnp")
+shootableComponent = NodePath("../ShootablePolygonComponent")
+holeVictim = NodePath("..")
+
+[node name="ShootablePolygonComponent" type="Node2D" parent="Icon" node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+script = ExtResource("5_r4rgi")
+pointMarkers = [NodePath("Marker2D"), NodePath("Marker2D2"), NodePath("Marker2D3"), NodePath("Marker2D4")]
+componentOwner = NodePath("..")
+
+[node name="Marker2D" type="Marker2D" parent="Icon/ShootablePolygonComponent"]
+position = Vector2(-64, -64)
+
+[node name="Marker2D2" type="Marker2D" parent="Icon/ShootablePolygonComponent"]
+position = Vector2(64, -64)
+
+[node name="Marker2D3" type="Marker2D" parent="Icon/ShootablePolygonComponent"]
+position = Vector2(64, 64)
+
+[node name="Marker2D4" type="Marker2D" parent="Icon/ShootablePolygonComponent"]
+position = Vector2(-64, 64)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_hfacs")]
+position = Vector2(448, 384)
+
+[node name="TargetStand" parent="." instance=ExtResource("1_b1iwh")]
+position = Vector2(184, 8)

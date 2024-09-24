@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbmh8gdq738ur"]
+
+[ext_resource type="PackedScene" uid="uid://dhvwaqhy5mi32" path="res://Targets/Target Assets/base_target.tscn" id="1_j04tx"]
+[ext_resource type="Script" path="res://Targets/timer_target.gd" id="2_7is3d"]
+
+[node name="TimerTarget" instance=ExtResource("1_j04tx")]
+script = ExtResource("2_7is3d")

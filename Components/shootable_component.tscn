@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://crtr17w3ak6vg"]
-
-[ext_resource type="Script" path="res://Components/shootable_component.gd" id="1_edm2k"]
-
-[node name="ShootableComponent" type="Node2D"]
-script = ExtResource("1_edm2k")
-
-[node name="ShootingArea" type="Area2D" parent="."]
-collision_layer = 0

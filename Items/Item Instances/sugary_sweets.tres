@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="SugarySweets" load_steps=2 format=3 uid="uid://dm50coacdj4nm"]
+
+[ext_resource type="Script" path="res://Items/Item Scripts/sugary_sweets.gd" id="1_lmclt"]
+
+[resource]
+script = ExtResource("1_lmclt")
+itemID = 4

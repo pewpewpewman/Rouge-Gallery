@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpgr67xouikq2"]
-
-[ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_ui_comonent.gd" id="1_cfp4k"]
-
-[node name="BulletHoleUIComonent" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_cfp4k")

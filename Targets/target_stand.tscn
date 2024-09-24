@@ -1,26 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://kvws4ujrc53u"]
+[gd_scene load_steps=4 format=3 uid="uid://kvws4ujrc53u"]
 
 [ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_ryqwq"]
-[ext_resource type="Texture2D" uid="uid://fswlynkjlghn" path="res://Targets/Target Assets/broken_pole_top.png" id="2_gkv1g"]
+[ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="2_q8fku"]
+[ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="3_uvami"]
 
 [node name="TargetStand" type="Sprite2D"]
 y_sort_enabled = true
 texture_repeat = 2
-position = Vector2(0, 31)
-scale = Vector2(0.239583, 0.200949)
+position = Vector2(0, -1.90735e-06)
+scale = Vector2(0.255319, 0.666667)
 texture = ExtResource("1_ryqwq")
 centered = false
-region_enabled = true
 region_rect = Rect2(0, 0, 96, 632)
-
-[node name="PoleTop" type="Sprite2D" parent="."]
-position = Vector2(48.913, -74.6457)
-scale = Vector2(0.773208, 1)
-texture = ExtResource("2_gkv1g")
 
 [node name="TargetDragger" type="RemoteTransform2D" parent="."]
 editor_description = "Used to control the movement of the target up until its shot"
 y_sort_enabled = true
-position = Vector2(48, -74.6457)
+position = Vector2(50.087, 7.62939e-06)
 update_rotation = false
 update_scale = false
+
+[node name="ShootablePolygonComponent" type="Node2D" parent="." node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+script = ExtResource("2_q8fku")
+pointMarkers = [NodePath("TopLeft"), NodePath("TopRight"), NodePath("BottomLeft"), NodePath("BottomRight")]
+componentOwner = NodePath("..")
+
+[node name="TopLeft" type="Marker2D" parent="ShootablePolygonComponent"]
+
+[node name="TopRight" type="Marker2D" parent="ShootablePolygonComponent"]
+position = Vector2(94, 1.05378e-05)
+
+[node name="BottomLeft" type="Marker2D" parent="ShootablePolygonComponent"]
+position = Vector2(94.0001, 1080)
+
+[node name="BottomRight" type="Marker2D" parent="ShootablePolygonComponent"]
+position = Vector2(7.62939e-06, 1080)
+
+[node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+script = ExtResource("3_uvami")
+shootableComponent = NodePath("../ShootablePolygonComponent")
+holeVictim = NodePath("..")

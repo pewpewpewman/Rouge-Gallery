@@ -6,7 +6,8 @@ extends Resource
 enum ItemID
 {
 	NONE = 0,
-	SUGARY_SWEETS = 4
+	SUGARY_SWEETS = 4,
+	UNPOPPED_KERNAL = 210
 }
 
 var itemName : StringName
@@ -15,10 +16,10 @@ var itemIconLocation : StringName
 var numStacks : int = 0
 @export var itemID : ItemID = ItemID.NONE
 
-func pickup(player : PlayerCharacter) -> void:
+func pickup(_player : PlayerCharacter) -> void:
 	print("Picked up a " + itemName)
 	numStacks += 1
 
-func loss(player : PlayerCharacter) -> void:
+func loss(_player : PlayerCharacter) -> void:
 	print("Lost a " + itemName)
 	numStacks -= 1

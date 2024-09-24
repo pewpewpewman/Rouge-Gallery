@@ -1,9 +1,10 @@
 #Base class for canvas items getting shot. The bse canvas item does not give enough info for making bullet shots, and UI stuff is different to sprites, so this base class is needed
+#WARNING: THIS CLASS IS NOT TO BE PUT IN THE SCENE TREE, ONLY ITS CHILDREN
 class_name BulletHoleComponent
 extends Node
 
 #Component Connections
-@export var holeVictim : CanvasItem #inheriting classes must make this an export
+@export var holeVictim : CanvasItem
 
 #Shader Vars
 var bulletHoleShader : Shader = load("res://bullet_holes.gdshader").duplicate()
@@ -23,5 +24,5 @@ func _ready() -> void:
 	if (holeVictim.material == null || holeVictim.material is CanvasItemMaterial):
 		holeVictim.material = ShaderMaterial.new()
 	holeVictim.material.shader = bulletHoleShader
-	holeVictim.material.set_shader_parameter(bulletHoleSizeStringName, 5.0)
+	holeVictim.material.set_shader_parameter(bulletHoleSizeStringName, 7.0)
 	holeVictim.material.set_shader_parameter(shotLocationsStringName, shotLocations)

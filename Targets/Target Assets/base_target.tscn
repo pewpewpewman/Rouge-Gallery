@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhvwaqhy5mi32"]
+
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_rljyf"]
+[ext_resource type="Script" path="res://Targets/Target Assets/base_target.gd" id="2_ls0ot"]
+[ext_resource type="Script" path="res://Components/Shootable/shootable_circle_component.gd" id="4_4c7w2"]
+[ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="4_n7ie3"]
+
+[node name="BaseTarget" type="Sprite2D" node_paths=PackedStringArray("shootableComponent")]
+y_sort_enabled = true
+texture = ExtResource("1_rljyf")
+region_rect = Rect2(0, 0, 256, 256)
+script = ExtResource("2_ls0ot")
+shootableComponent = NodePath("ShootableCircleComponent")
+
+[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("componentOwner")]
+script = ExtResource("4_4c7w2")
+componentOwner = NodePath("..")
+
+[node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+script = ExtResource("4_n7ie3")
+shootableComponent = NodePath("../ShootableCircleComponent")
+holeVictim = NodePath("..")

@@ -5,5 +5,7 @@
 [node name="Stage" type="Node"]
 script = ExtResource("1_njkjx")
 
-[node name="NormalTargetSpawn" type="Timer" parent="."]
+[node name="NormalTargetTime" type="Timer" parent="."]
 autostart = true
+
+[node name="RoundTime" type="Timer" parent="."]

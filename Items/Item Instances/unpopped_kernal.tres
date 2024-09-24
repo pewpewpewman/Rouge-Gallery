@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UnpoppedKernel" load_steps=2 format=3 uid="uid://bykm6jmwe5cmh"]
+
+[ext_resource type="Script" path="res://Items/Item Scripts/unpopped_kernel.gd" id="1_wc5to"]
+
+[resource]
+script = ExtResource("1_wc5to")
+itemID = 210

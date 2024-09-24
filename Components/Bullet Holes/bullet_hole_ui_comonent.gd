@@ -1,5 +1,6 @@
 #Component for making bullet holes appear in ui elements
 #To use this component, connect a shootable component and a canvas item you want hole to appear in
+class_name BulletHoleUIComponent
 extends BulletHoleComponent
 
 var holeVictimUI : Control

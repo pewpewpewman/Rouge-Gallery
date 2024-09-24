@@ -1,17 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvrw4t7lc1gnq"]
+[gd_scene load_steps=4 format=3 uid="uid://bvrw4t7lc1gnq"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_x2uxd"]
-[ext_resource type="PackedScene" uid="uid://cpla6qnn5a6qq" path="res://Player/player_character.tscn" id="2_e5px6"]
-[ext_resource type="PackedScene" uid="uid://b3kk540oalq0n" path="res://stage.tscn" id="2_xwrjw"]
-[ext_resource type="PackedScene" uid="uid://cksvlh028c7ka" path="res://Menus/hud.tscn" id="5_uwhe8"]
+[ext_resource type="Script" path="res://Main/Game States/in_round_state.gd" id="2_osfp2"]
+[ext_resource type="Script" path="res://Main/Game States/menuing_state.gd" id="3_lhuig"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_x2uxd")
 
-[node name="Stage" parent="." instance=ExtResource("2_xwrjw")]
+[node name="InRoundState" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("2_osfp2")
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_e5px6")]
-z_index = 3
-position = Vector2(-144, -144)
-
-[node name="Hud" parent="." instance=ExtResource("5_uwhe8")]
+[node name="MenuingState" type="Node" parent="."]
+process_mode = 4
+script = ExtResource("3_lhuig")

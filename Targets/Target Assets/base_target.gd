@@ -3,7 +3,7 @@ class_name BaseTarget
 extends Sprite2D
 
 #Component Connection
-@export var shootableComponent : ShootableComponent
+@export var shootableComponent : ShootableBase
 
 #General Use Vars
 var pointValue : int = 0
@@ -16,25 +16,29 @@ var deathAnimationTime : float = 0.0
 @export var deathText : CompressedTexture2D
 
 func _ready() -> void:
+	assert(shootableComponent != null, "Targets need shot detection components")
 	shootableComponent.was_shot.connect(_on_was_shot)
 
 func _process(delta: float) -> void:
+	#TODO: make two bsae classes from base - dragged and thrown
 	if destroyed:
 		self.position = deathCurve.sample(0, deathAnimationTime)
 
-func _on_was_shot(player : PlayerCharacter):
+func _on_was_shot(shotLocation : Vector2i):
 	if !destroyed:
 		GameplaySignals.target_shot.emit(self)
 		_on_destroyed()
 
 func _on_destroyed():
 	destroyed = true
-	dragger.remote_path = ""
-	self.texture = deathText
+	if dragger != null:
+		dragger.remote_path = ""
+	if deathText != null:
+		texture = deathText
 	play_death_anim()
  
 func play_death_anim():
-		#Get a random direction for the dying animation
+	#Get a random direction for the dying animation
 	var deathDirection : int = randi()
 	if deathDirection % 2 == 0:
 		deathDirection = -1
