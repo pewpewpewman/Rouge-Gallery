@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cksvlh028c7ka"]
+[gd_scene load_steps=8 format=3 uid="uid://cksvlh028c7ka"]
 
 [ext_resource type="Script" path="res://Menus/hud.gd" id="1_7b15j"]
 [ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="2_i6jjb"]
 [ext_resource type="Texture2D" uid="uid://cwvxtgc80pin2" path="res://Menus/Menu Assets/numberTileSheet.png" id="2_pv86v"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aguvf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nek0g"]
 atlas = ExtResource("2_pv86v")
@@ -32,6 +34,7 @@ anchor_right = 0.222
 anchor_bottom = 0.198
 offset_right = 0.255981
 offset_bottom = -0.304016
+label_settings = SubResource("LabelSettings_aguvf")
 
 [node name="ScoreCounter" type="Label" parent="."]
 layout_mode = 1

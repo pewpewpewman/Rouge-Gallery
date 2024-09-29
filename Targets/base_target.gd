@@ -15,14 +15,24 @@ var deathCurve : Curve2D = Curve2D.new()
 var deathAnimationTime : float = 0.0
 @export var deathText : CompressedTexture2D
 
+#Thrown Target Vars
+var thrown : bool = false
+var trajectory : Curve2D = Curve2D.new()
+var trajectoryTracker : float = 0.0
+
+#Variable paths for tweener - possible solution to stutter
+#static var trajectoryTrackerPath : NodePath = "trajectoryTracker"
+#static var rotationPath : NodePath = "rotation"
+
 func _ready() -> void:
 	assert(shootableComponent != null, "Targets need shot detection components")
 	shootableComponent.was_shot.connect(_on_was_shot)
 
 func _process(delta: float) -> void:
-	#TODO: make two bsae classes from base - dragged and thrown
 	if destroyed:
 		self.position = deathCurve.sample(0, deathAnimationTime)
+	elif thrown:
+		self.position = trajectory.sample(0, trajectoryTracker)
 
 func _on_was_shot(shotLocation : Vector2i):
 	if !destroyed:
@@ -37,7 +47,7 @@ func _on_destroyed():
 		texture = deathText
 	play_death_anim()
  
-func play_death_anim():
+func play_death_anim() -> void:
 	#Get a random direction for the dying animation
 	var deathDirection : int = randi()
 	if deathDirection % 2 == 0:
@@ -63,3 +73,7 @@ func play_death_anim():
 	tween.parallel()
 	tween.tween_property(self, "rotation", 4.0 * PI * -deathDirection, deathAnimLength).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.finished.connect(queue_free)
+
+func death_free_check() -> void:
+	if !destroyed:
+		queue_free()

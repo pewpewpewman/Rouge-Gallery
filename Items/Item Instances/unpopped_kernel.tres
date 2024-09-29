@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://dswcnnptpvcig"]
+
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_phecr"]
+[ext_resource type="Script" path="res://Items/Item Scripts/unpopped_kernel.gd" id="2_smqfp"]
+
+[resource]
+script = ExtResource("2_smqfp")
+itemName = &"Unpopped Kernel"
+itemDesc = &"Adds an extra random shot to each shot fired - bad for your teeth."
+itemID = 210
+itemIcon = ExtResource("1_phecr")

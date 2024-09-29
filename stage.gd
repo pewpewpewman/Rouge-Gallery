@@ -4,10 +4,13 @@ extends Node
 #Children References
 @onready var normalTargetTime : Timer = $NormalTargetTime
 @onready var roundDurationTime : Timer = $RoundTime
+@onready var specialTargetTime: Timer = $SpecialTargetTime
 
 #Target Type Scenes
 var targetStandScene : PackedScene = preload("res://Targets/target_stand.tscn")
 var normalTargetScene : PackedScene = preload("res://Targets/normal_target.tscn")
+var timerTargetScene : PackedScene = preload("res://Targets/timer_target.tscn")
+var itemTargetScene : PackedScene = preload("res://Targets/item_target.tscn")
 
 #Target Stream Vars
 var streamSpawnPos : PackedVector2Array
@@ -15,6 +18,7 @@ var numStreams : int = 3
 
 #Time vars
 var roundLength : float = 100.0
+var timeToNextSpecial : float = 4.0
 
 signal game_over
 
@@ -27,16 +31,59 @@ func _ready() -> void:
 	normalTargetTime.timeout.connect(_on_normal_target_time_timeout)
 	normalTargetTime.wait_time = 2.0
 	
+	specialTargetTime.timeout.connect(_on_special_target_time_timeout)
+	specialTargetTime.timeout.connect(randomize_special_target_time)
+	randomize_special_target_time()
+	
 	roundDurationTime.timeout.connect(_on_round_time_timeout)
 	roundDurationTime.start(roundLength)
 
 func _on_normal_target_time_timeout() -> void:
 	var standLifeTime : float = 8.0
 	for i : int in numStreams:
-		var target : NormalTarget = normalTargetScene.instantiate()
+		
+		var target : BaseTarget
+		var targetStand : Sprite2D = targetStandScene.instantiate()
+
+		var choice : int = randi_range(0, 100)
+		if choice <= 90:
+			target = normalTargetScene.instantiate()
+		elif choice <= 95:
+			target = itemTargetScene.instantiate()
+		elif choice <= 100:
+			target = timerTargetScene.instantiate()
+		
 		add_child(target)
-		target.z_index += i
-		spawn_scrolling_target(target, streamSpawnPos[i], standLifeTime)
+		add_child(targetStand)
+		target.z_index -= i
+		targetStand.z_index -= i
+		spawn_scrolling_target(target, targetStand, streamSpawnPos[i], standLifeTime)
+
+func _on_special_target_time_timeout() -> void:
+	#see what type  of target throw we're doing
+	var willArc : bool = true
+	if randi_range(1, 3) == 1:
+		willArc = false
+	var target : TimerTarget = timerTargetScene.instantiate()
+	target.timer_target_destoryed.connect(increase_timer)
+	add_child(target)
+	
+	var throwHeight : int
+	var time  : float = 1.5
+	
+	if willArc:
+		var spawnY : int = randi_range(screenSize.y / 3.0, 3.0 * screenSize.y / 4.0)
+		print(spawnY)
+		throwHeight = randi_range(50, 400)
+		spawn_thrown_target(target, Vector2(-30, spawnY), Vector2(screenSize.x + 30, spawnY), throwHeight, time)
+	else:
+		var spawnX : int = randi_range(100, screenSize.x - 100)
+		throwHeight = randi_range(350, 450)
+		spawn_thrown_target(target, Vector2(spawnX, screenSize.y), Vector2(spawnX, screenSize.y), throwHeight, time)
+
+func randomize_special_target_time() -> void:
+	var time : float = randf_range(4.0, 10.0)
+	specialTargetTime.start(time)
 
 func fill_stream_spawn_pos() -> void:
 	for i : int in numStreams:
@@ -62,21 +109,30 @@ func increase_timer(timeValue : float):
 	initialTime += timeValue
 	roundDurationTime.start(initialTime)
 
-func spawn_thrown_target(target : BaseTarget, initialPos : Vector2, endPos : Vector2, animTime : float) -> void:
-	var trajectory : Curve2D = Curve2D.new()
+func spawn_thrown_target(target : BaseTarget, initialPos : Vector2, endPos : Vector2, height : float, animTime : float) -> void:
+	var tween : Tween = get_tree().create_tween()
+	var halfWayX : float = (endPos.x - initialPos.x) / 2.0
+	target.thrown = true
+	target.position = initialPos
+	target.trajectory.add_point(initialPos, Vector2.ZERO, Vector2(halfWayX, -height))
+	target.trajectory.add_point(endPos, Vector2(-halfWayX, -height), Vector2.ZERO)
+	
+	tween.tween_property(target, "trajectoryTracker", 1.0, animTime).set_ease(Tween.EASE_OUT_IN)
+	tween.parallel()
+	tween.tween_property(target, "rotation", 2.0 * PI, animTime)
+	tween.tween_callback(target.death_free_check)
 
-func spawn_scrolling_target(target : BaseTarget, initialPosition : Vector2, animTime : float) -> void:
-	var targetStand : Sprite2D = targetStandScene.instantiate()
+func spawn_scrolling_target(target : BaseTarget, targetStand : Sprite2D, initialPosition : Vector2, animTime : float) -> void:
 	var targetDragger : RemoteTransform2D = targetStand.get_child(0) #gets target dragger
 	var targetStandTween : Tween = get_tree().create_tween()
 	var endPos : Vector2
+	
 	endPos.y = initialPosition.y
 	if initialPosition.x > 0:
-		endPos.x = -40
+		endPos.x = -30 #causes objects popping out of existance - not super noticable
 	else:
-		endPos.x = screenSize.x + 40
+		endPos.x = screenSize.x + 30
 	
-	add_child(targetStand)
 	targetStand.position = initialPosition
 	
 	targetDragger.remote_path = target.get_path()
@@ -84,5 +140,5 @@ func spawn_scrolling_target(target : BaseTarget, initialPosition : Vector2, anim
 	
 	targetStandTween.tween_property(targetStand, "position", endPos, animTime)
 	targetStandTween.finished.connect(targetStand.queue_free)
-	targetStandTween.finished.connect(target.queue_free)
+	targetStandTween.finished.connect(target.death_free_check)
 	

@@ -9,3 +9,7 @@ script = ExtResource("1_njkjx")
 autostart = true
 
 [node name="RoundTime" type="Timer" parent="."]
+
+[node name="SpecialTargetTime" type="Timer" parent="."]
+one_shot = true
+autostart = true

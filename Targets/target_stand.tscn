@@ -5,7 +5,8 @@
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="3_uvami"]
 
 [node name="TargetStand" type="Sprite2D"]
-y_sort_enabled = true
+z_index = -1
+z_as_relative = false
 texture_repeat = 2
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(0.255319, 0.666667)
