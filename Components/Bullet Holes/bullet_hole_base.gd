@@ -24,5 +24,5 @@ func _ready() -> void:
 	if (holeVictim.material == null || holeVictim.material is CanvasItemMaterial):
 		holeVictim.material = ShaderMaterial.new()
 	holeVictim.material.shader = bulletHoleShader
-	holeVictim.material.set_shader_parameter(bulletHoleSizeStringName, 7.0)
+	holeVictim.material.set_shader_parameter(bulletHoleSizeStringName, 10.0)
 	holeVictim.material.set_shader_parameter(shotLocationsStringName, shotLocations)

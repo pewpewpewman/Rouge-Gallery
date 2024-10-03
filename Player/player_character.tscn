@@ -22,3 +22,6 @@ texture = ExtResource("1_sohqq")
 one_shot = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AutoReload" type="Timer" parent="."]

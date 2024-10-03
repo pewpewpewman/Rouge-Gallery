@@ -30,9 +30,9 @@ func _on_was_shot(shotLocation : Vector2) -> void:
 	var localShotLocation : Vector2 
 	
 	if holeVictimSprite.centered:
-		localShotLocation = ((shotLocation - holeVictimSprite.global_position).rotated(-holeVictimSprite.rotation) + holeVictimSize * 0.5) / holeVictimSize
+		localShotLocation = ((shotLocation - holeVictimSprite.global_position - holeVictimSprite.offset).rotated(-holeVictimSprite.rotation) + holeVictimSize * 0.5) / holeVictimSize
 	else:
-		localShotLocation = (shotLocation - holeVictimSprite.global_position).rotated(-holeVictimSprite.rotation) / holeVictimSize
+		localShotLocation = (shotLocation - holeVictimSprite.global_position - holeVictimSprite.offset).rotated(-holeVictimSprite.rotation) / holeVictimSize
 	
 	shotLocations[shotLocationIndex % MAX_BULLET_HOLES] = localShotLocation
 	shotLocationIndex += 1

@@ -3,7 +3,7 @@ extends GameStateBase
 
 func state_enter() -> void:
 	#Add Gameplay Elements
-	mainRef.stage = (load("res://stage.tscn") as PackedScene).instantiate()
+	mainRef.stage = (load("res://Stage/stage.tscn") as PackedScene).instantiate()
 	mainRef.hud = (load("res://Menus/hud.tscn") as PackedScene).instantiate()
 	mainRef.playerCharacter = (load("res://Player/player_character.tscn") as PackedScene).instantiate()
 	add_child(mainRef.stage)
@@ -11,7 +11,8 @@ func state_enter() -> void:
 	add_child(mainRef.playerCharacter)
 	
 	mainRef.stage.game_over.connect(mainRef._on_game_end)
-	
+	GameplaySignals.bullet_used.connect(mainRef.hud.progress_chamber)
+	GameplaySignals.bullet_reloaded.connect(mainRef.hud.reload_chamber)
 	print("Entered Round State")
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cksvlh028c7ka"]
+[gd_scene load_steps=9 format=3 uid="uid://cksvlh028c7ka"]
 
 [ext_resource type="Script" path="res://Menus/hud.gd" id="1_7b15j"]
 [ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="2_i6jjb"]
 [ext_resource type="Texture2D" uid="uid://cwvxtgc80pin2" path="res://Menus/Menu Assets/numberTileSheet.png" id="2_pv86v"]
+[ext_resource type="Texture2D" uid="uid://bi2kg5yig8ceq" path="res://Menus/Hud Assets/chamber.png" id="4_r82ru"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_aguvf"]
 
@@ -19,6 +20,7 @@ atlas = ExtResource("2_pv86v")
 region = Rect2(0, 0, 100, 200)
 
 [node name="Hud" type="Control"]
+z_index = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,4 +95,10 @@ anchor_bottom = 1.0
 texture = SubResource("AtlasTexture_idkuh")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoIndicator" type="Sprite2D" parent="."]
+position = Vector2(88, 632)
+scale = Vector2(0.72, 0.72)
+texture = ExtResource("4_r82ru")
 metadata/_edit_use_anchors_ = true

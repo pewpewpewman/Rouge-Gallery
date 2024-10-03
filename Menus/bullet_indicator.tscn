@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://besrptkpw4rg4"]
+
+[ext_resource type="Texture2D" uid="uid://glsaky0afvly" path="res://Menus/Hud Assets/unused_round.png" id="1_3jno4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2bmyy"]
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[node name="FirstBullet" type="Sprite2D"]
+position = Vector2(28, 28)
+scale = Vector2(0.186667, 0.186667)
+texture = ExtResource("1_3jno4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -150.0
+offset_right = -150.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "texty"
+label_settings = SubResource("LabelSettings_2bmyy")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
