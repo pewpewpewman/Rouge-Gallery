@@ -5,17 +5,8 @@ extends Node
 @onready var inRoundState : InRoundState = $InRoundState
 @onready var menuingState : MenuingState = $MenuingState
 
-#Main Scenes
-var hud : Hud
-var playerCharacter : PlayerCharacter
-var stage : Stage
-var mainMenu : MainMenu = (preload("res://Menus/Main Menu/main_menu.tscn") as PackedScene).instantiate()
-
 #Game States
 var currentState : GameStateBase
-
-#General Variables
-var totalPoints : int = 0
 
 func change_state(stateToChange : GameStateBase):
 	if currentState != null: #checking each time might be bad - doesnt matter, state doesnt change super often
@@ -27,7 +18,6 @@ func change_state(stateToChange : GameStateBase):
 
 func _ready() -> void:
 	change_state(menuingState)
-	GameplaySignals.target_shot.connect(_on_target_shot)
 	pass
 
 func _input(event: InputEvent) -> void:
@@ -47,7 +37,3 @@ func _on_game_end() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-
-func _on_target_shot(target : BaseTarget) -> void:
-	totalPoints += target.pointValue
-	hud.get_node("ScoreCounter").set_text("Score: %d" % totalPoints)

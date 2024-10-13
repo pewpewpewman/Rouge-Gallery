@@ -14,9 +14,10 @@ region_rect = Rect2(0, 0, 256, 256)
 script = ExtResource("2_ls0ot")
 shootableComponent = NodePath("ShootableCircleComponent")
 
-[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("componentOwner")]
+[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("componentOwner", "bulletHoleComponent")]
 script = ExtResource("4_4c7w2")
 componentOwner = NodePath("..")
+bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
 
 [node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim")]
 script = ExtResource("4_n7ie3")

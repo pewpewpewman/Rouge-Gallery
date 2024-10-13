@@ -7,3 +7,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="StartRound" type="Button" parent="."]
+layout_mode = 0
+offset_left = 701.0
+offset_top = 260.0
+offset_right = 1089.0
+offset_bottom = 495.0
+text = "stat round"
+
+[node name="ReturnToMain" type="Button" parent="."]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 214.0
+offset_right = 540.0
+offset_bottom = 449.0
+text = "bo gack"

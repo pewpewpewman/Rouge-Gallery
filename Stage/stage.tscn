@@ -8,8 +8,9 @@
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="5_36x5a"]
 [ext_resource type="Texture2D" uid="uid://dpyyl3g3v0dy4" path="res://Stage/Stage Assets/foreground3.png" id="5_nxnu7"]
 
-[node name="Stage" type="Node"]
+[node name="Stage" type="Node" node_paths=PackedStringArray("streamSpawnPos")]
 script = ExtResource("1_njkjx")
+streamSpawnPos = [NodePath("Foreground3Spawn"), NodePath("Foreground2Spawn"), NodePath("Foreground1Spawn")]
 
 [node name="NormalTargetTime" type="Timer" parent="."]
 
@@ -19,98 +20,85 @@ script = ExtResource("1_njkjx")
 one_shot = true
 autostart = true
 
-[node name="Sky" type="Sprite2D" parent="."]
+[node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="Sky" type="Sprite2D" parent="SpriteHolder"]
 z_index = -9
 y_sort_enabled = true
 position = Vector2(649, 389)
 texture = ExtResource("2_xtiaa")
 offset = Vector2(-9, -29)
 
-[node name="Foreground1" type="Sprite2D" parent="."]
+[node name="Foreground1" type="Sprite2D" parent="SpriteHolder"]
 z_index = -6
 y_sort_enabled = true
 position = Vector2(649, 389)
 texture = ExtResource("3_bssag")
 offset = Vector2(-9, -29)
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="Foreground1" node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
 script = ExtResource("4_ipbyu")
-pointMarkers = [NodePath("../TopLeft"), NodePath("../TopRight"), NodePath("../../BottomRight"), NodePath("../../BottomLeft")]
+polygon = NodePath("../Hitbox")
 componentOwner = NodePath("..")
+bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="Foreground1" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
 script = ExtResource("5_36x5a")
 shootableComponent = NodePath("../ShootablePolygonComponent")
 holeVictim = NodePath("..")
 
-[node name="TopLeft" type="Marker2D" parent="Foreground1"]
-position = Vector2(-649, -37)
+[node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground1"]
+visible = false
+points = PackedVector2Array(-649, -149, -545, -141, -457, -125, -377, -101, -257, -85, -161, -85, -97, -85, 39, -117, 183, -149, 295, -157, 399, -149, 495, -141, 567, -125, 631, -93, 631, 331, -649, 331, -649, -149)
 
-[node name="TopRight" type="Marker2D" parent="Foreground1"]
-position = Vector2(631, -29)
-
-[node name="Foreground2" type="Sprite2D" parent="."]
+[node name="Foreground2" type="Sprite2D" parent="SpriteHolder"]
 z_index = -3
 y_sort_enabled = true
 position = Vector2(649, 389)
 texture = ExtResource("4_swubg")
 offset = Vector2(-9, -29)
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="Foreground2" node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
 script = ExtResource("4_ipbyu")
-pointMarkers = [NodePath("../TopLeft"), NodePath("../TopLeftMid"), NodePath("../TopRightMid"), NodePath("../TopRight"), NodePath("../../BottomRight"), NodePath("../../BottomLeft")]
+polygon = NodePath("../Hitbox")
 componentOwner = NodePath("..")
+bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="Foreground2" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
 script = ExtResource("5_36x5a")
 shootableComponent = NodePath("../ShootablePolygonComponent")
 holeVictim = NodePath("..")
 
-[node name="TopLeft" type="Marker2D" parent="Foreground2"]
-position = Vector2(-649, 51)
+[node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground2"]
+visible = false
+points = PackedVector2Array(-649, -13, -593, -5, -529, -37, -473, -61, -409, -93, -321, -109, -257, -109, -193, -109, -113, -93, -41, -53, 71, 3, 183, 35, 279, 51, 375, 59, 447, 59, 495, 51, 551, 27, 591, -29, 631, -77, 631, 331, -649, 331, -649, -13)
 
-[node name="TopLeftMid" type="Marker2D" parent="Foreground2"]
-position = Vector2(-249, 91)
-
-[node name="TopRightMid" type="Marker2D" parent="Foreground2"]
-position = Vector2(183, 59)
-
-[node name="TopRight" type="Marker2D" parent="Foreground2"]
-position = Vector2(631, 99)
-
-[node name="Foreground3" type="Sprite2D" parent="."]
+[node name="Foreground3" type="Sprite2D" parent="SpriteHolder"]
 y_sort_enabled = true
 position = Vector2(649, 389)
 texture = ExtResource("5_nxnu7")
 offset = Vector2(-9, -29)
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="Foreground3" node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
 script = ExtResource("4_ipbyu")
-pointMarkers = [NodePath("../TopLeft"), NodePath("../TopMidLeft"), NodePath("../TopMid"), NodePath("../TopMidRight"), NodePath("../TopRight"), NodePath("../../BottomRight"), NodePath("../../BottomLeft")]
+polygon = NodePath("../Hitbox")
 componentOwner = NodePath("..")
+bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="Foreground3" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
 script = ExtResource("5_36x5a")
 shootableComponent = NodePath("../ShootablePolygonComponent")
 holeVictim = NodePath("..")
 
-[node name="TopLeft" type="Marker2D" parent="Foreground3"]
-position = Vector2(-649, 155)
+[node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground3"]
+visible = false
+points = PackedVector2Array(-649, 99, -649, 331, 631, 331, 631, 163, 575, 147, 567, 99, 543, 43, 503, -5, 439, -21, 415, -21, 359, 3, 303, 59, 239, 107, 111, 99, 47, 75, -33, 75, -81, 83, -121, 43, -169, 11, -241, 11, -329, 59, -425, 99, -489, 115, -537, 123, -569, 131, -601, 107, -633, 91, -649, 99)
 
-[node name="TopMidLeft" type="Marker2D" parent="Foreground3"]
-position = Vector2(-449, 123)
+[node name="Foreground1Spawn" type="Marker2D" parent="."]
+position = Vector2(0, 328)
 
-[node name="TopMid" type="Marker2D" parent="Foreground3"]
-position = Vector2(-33, 187)
+[node name="Foreground2Spawn" type="Marker2D" parent="."]
+position = Vector2(1280, 448)
 
-[node name="TopMidRight" type="Marker2D" parent="Foreground3"]
-position = Vector2(391, 179)
-
-[node name="TopRight" type="Marker2D" parent="Foreground3"]
-position = Vector2(631, 163)
-
-[node name="BottomLeft" type="Marker2D" parent="."]
-position = Vector2(0, 720)
-
-[node name="BottomRight" type="Marker2D" parent="."]
-position = Vector2(1280, 720)
+[node name="Foreground3Spawn" type="Marker2D" parent="."]
+position = Vector2(0, 528)

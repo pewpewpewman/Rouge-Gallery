@@ -26,15 +26,15 @@ var trajectoryTracker : float = 0.0
 
 func _ready() -> void:
 	assert(shootableComponent != null, "Targets need shot detection components")
-	shootableComponent.was_shot.connect(_on_was_shot)
+	shootableComponent.componentShot.connect(_on_was_shot)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if destroyed:
 		self.position = deathCurve.sample(0, deathAnimationTime)
 	elif thrown:
 		self.position = trajectory.sample(0, trajectoryTracker)
 
-func _on_was_shot(shotLocation : Vector2i):
+func _on_was_shot(_shotLocation : Vector2i):
 	if !destroyed:
 		GameplaySignals.target_shot.emit(self)
 		_on_destroyed()

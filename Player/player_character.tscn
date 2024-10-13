@@ -1,22 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpla6qnn5a6qq"]
+[gd_scene load_steps=4 format=3 uid="uid://cpla6qnn5a6qq"]
 
 [ext_resource type="Script" path="res://Player/player_character.gd" id="1_lo317"]
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_sohqq"]
+[ext_resource type="Texture2D" uid="uid://jpq8qfsq7feg" path="res://Player/inner.png" id="2_lpds0"]
+[ext_resource type="Texture2D" uid="uid://bjtgnw6s5c7ra" path="res://Player/outer.png" id="3_j8ker"]
 
 [node name="PlayerCharacter" type="Node2D"]
 z_index = 3
 script = ExtResource("1_lo317")
-
-[node name="Reticle" type="Sprite2D" parent="."]
-position = Vector2(-9.53674e-07, 0)
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_sohqq")
-
-[node name="ReticleRing" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.384314)
-position = Vector2(-4.76837e-07, -4.76837e-07)
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_sohqq")
 
 [node name="ShotCooldown" type="Timer" parent="."]
 one_shot = true
@@ -25,3 +15,12 @@ one_shot = true
 one_shot = true
 
 [node name="AutoReload" type="Timer" parent="."]
+
+[node name="Inner" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_lpds0")
+
+[node name="Outer" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_j8ker")

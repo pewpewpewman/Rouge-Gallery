@@ -11,7 +11,7 @@ func _ready() -> void:
 	super._ready()
 	assert(shootableComponent != null, "Bullet hole component needs a valid shootable component!")
 	assert(holeVictim is Sprite2D, "Bullet Component for sprites must use a sprite")
-	shootableComponent.was_shot.connect(_on_was_shot)
+	shootableComponent.componentShot.connect(_on_was_shot)
 	holeVictimSprite = holeVictim as Sprite2D
 	holeVictimSprite.material.set_shader_parameter(imageScaleStringName, holeVictimSprite.global_scale)
 
@@ -35,5 +35,6 @@ func _on_was_shot(shotLocation : Vector2) -> void:
 		localShotLocation = (shotLocation - holeVictimSprite.global_position - holeVictimSprite.offset).rotated(-holeVictimSprite.rotation) / holeVictimSize
 	
 	shotLocations[shotLocationIndex % MAX_BULLET_HOLES] = localShotLocation
+	unnormalizedShotLocations[shotLocationIndex % MAX_BULLET_HOLES] = shotLocation
 	shotLocationIndex += 1
 	holeVictimSprite.material.set_shader_parameter(shotLocationsStringName, shotLocations)

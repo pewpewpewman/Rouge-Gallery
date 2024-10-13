@@ -7,3 +7,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ReturnToMain" type="Button" parent="."]
+offset_left = 473.0
+offset_top = 524.0
+offset_right = 850.0
+offset_bottom = 680.0
+text = "bo gack"
+
+[node name="QuitGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 195.0
+offset_right = 785.0
+offset_bottom = 399.0
+text = "yes, quit"

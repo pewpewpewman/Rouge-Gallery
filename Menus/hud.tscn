@@ -1,11 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://cksvlh028c7ka"]
+[gd_scene load_steps=11 format=3 uid="uid://cksvlh028c7ka"]
 
 [ext_resource type="Script" path="res://Menus/hud.gd" id="1_7b15j"]
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="2_i6jjb"]
+[ext_resource type="Texture2D" uid="uid://br0s57jer4x3e" path="res://Menus/Hud Assets/stage_overlay.png" id="2_4g7jr"]
 [ext_resource type="Texture2D" uid="uid://cwvxtgc80pin2" path="res://Menus/Menu Assets/numberTileSheet.png" id="2_pv86v"]
+[ext_resource type="Texture2D" uid="uid://w83b3qvccae5" path="res://Menus/Menu Assets/colon.png" id="3_apdg2"]
 [ext_resource type="Texture2D" uid="uid://bi2kg5yig8ceq" path="res://Menus/Hud Assets/chamber.png" id="4_r82ru"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_dgtms"]
+font_size = 32
+font_color = Color(0.661458, 0.18948, 0.61721, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_aguvf"]
+font_size = 32
+font_color = Color(0.817708, 0.11499, 0.31263, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nek0g"]
 atlas = ExtResource("2_pv86v")
@@ -21,6 +28,7 @@ region = Rect2(0, 0, 100, 200)
 
 [node name="Hud" type="Control"]
 z_index = 3
+custom_minimum_size = Vector2(1280, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,77 +36,82 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7b15j")
+metadata/_edit_use_anchors_ = true
 
-[node name="DebugInfo" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.222
-anchor_bottom = 0.198
-offset_right = 0.255981
-offset_bottom = -0.304016
-label_settings = SubResource("LabelSettings_aguvf")
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2_4g7jr")
+metadata/_edit_use_anchors_ = true
 
 [node name="ScoreCounter" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.178
-anchor_right = 0.2
-anchor_bottom = 0.444
-offset_top = -0.160004
-offset_bottom = 0.319977
+anchor_top = 0.013
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 574.64
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_dgtms")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Timer" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 1024.0
-offset_top = 576.0
-offset_right = 1280.0
-offset_bottom = 720.0
-
-[node name="Minute" type="TextureRect" parent="Timer"]
+[node name="DebugInfo" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.25
-anchor_bottom = 1.0
-texture = SubResource("AtlasTexture_nek0g")
-expand_mode = 1
+anchor_right = 0.15
+anchor_bottom = 0.0888889
+label_settings = SubResource("LabelSettings_aguvf")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AmmoIndicator" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16875
+anchor_top = 0.822222
+anchor_right = 0.25625
+anchor_bottom = 0.977778
+pivot_offset = Vector2(56, 56)
+texture = ExtResource("4_r82ru")
+expand_mode = 3
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.725
+anchor_top = 0.833333
+anchor_right = 0.9125
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Minute" type="TextureRect" parent="Timer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_nek0g")
+expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="Colon" type="TextureRect" parent="Timer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.25
-anchor_right = 0.5
-anchor_bottom = 1.0
-texture = ExtResource("2_i6jjb")
-expand_mode = 1
-stretch_mode = 5
+layout_mode = 2
+texture = ExtResource("3_apdg2")
+expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="SecondTens" type="TextureRect" parent="Timer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.75
-anchor_bottom = 1.0
+layout_mode = 2
 texture = SubResource("AtlasTexture_tiedn")
-expand_mode = 1
-stretch_mode = 5
+expand_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="SecondOnes" type="TextureRect" parent="Timer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.75
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
 texture = SubResource("AtlasTexture_idkuh")
-expand_mode = 1
-stretch_mode = 5
-metadata/_edit_use_anchors_ = true
-
-[node name="AmmoIndicator" type="Sprite2D" parent="."]
-position = Vector2(88, 632)
-scale = Vector2(0.72, 0.72)
-texture = ExtResource("4_r82ru")
+expand_mode = 3
 metadata/_edit_use_anchors_ = true

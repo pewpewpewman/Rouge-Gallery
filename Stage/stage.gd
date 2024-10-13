@@ -13,8 +13,8 @@ var timerTargetScene : PackedScene = preload("res://Targets/timer_target.tscn")
 var itemTargetScene : PackedScene = preload("res://Targets/item_target.tscn")
 
 #Target Stream Vars
-var streamSpawnPos : PackedVector2Array
-var numStreams : int = 3
+@export var streamSpawnPos : Array[Marker2D]
+@onready var numStreams : int = streamSpawnPos.size()
 
 #Time vars
 var roundLength : float = 100.0
@@ -24,11 +24,12 @@ var timeToNextNormalHigh : float = 2.0
 
 signal game_over
 
-@onready var screenSize : Vector2 = get_window().get_viewport().get_visible_rect().size
+@onready var screenSize : Vector2 = get_window().size
 
 func _ready() -> void:
-	streamSpawnPos.resize(numStreams)
-	fill_stream_spawn_pos()
+	assert(numStreams > 0, "Stage needs target spawning points to function")
+	for i : int in numStreams:
+		assert(streamSpawnPos[i] != null, "Target Spawning positions need valid markers")
 	
 	normalTargetTime.timeout.connect(_on_normal_target_time_timeout)
 	normalTargetTime.wait_time = 2.0
@@ -59,7 +60,7 @@ func _on_normal_target_time_timeout() -> void:
 	var row = randi_range(0, numStreams - 1)
 	target.z_index = -row * 3 + 1
 	targetStand.z_index =  -row * 3
-	spawn_scrolling_target(target, targetStand, streamSpawnPos[row], standLifeTime)
+	spawn_scrolling_target(target, targetStand, streamSpawnPos[row].position, standLifeTime)
 	ramdomize_normal_target_time()
 
 
@@ -76,12 +77,12 @@ func _on_special_target_time_timeout() -> void:
 	var time  : float = 1.5
 	
 	if willArc:
-		var spawnY : int = randi_range(screenSize.y / 3.0, 3.0 * screenSize.y / 4.0)
+		var spawnY : int = randi_range(3.0 * screenSize.y / 4.0, 5.0 * screenSize.y / 6.0)
 		throwHeight = randi_range(50, 400)
 		spawn_thrown_target(target, Vector2(-30, spawnY), Vector2(screenSize.x + 30, spawnY), throwHeight, time)
 	else:
 		var spawnX : int = randi_range(100, screenSize.x - 100)
-		throwHeight = randi_range(350, 450)
+		throwHeight = randi_range(450, 550)
 		spawn_thrown_target(target, Vector2(spawnX, screenSize.y), Vector2(spawnX, screenSize.y), throwHeight, time)
 
 func randomize_special_target_time() -> void:
@@ -91,22 +92,6 @@ func randomize_special_target_time() -> void:
 func ramdomize_normal_target_time() -> void:
 	var time : float = randf_range(timeToNextNormalLow, timeToNextNormalHigh)
 	normalTargetTime.start(time)
-	
-
-func fill_stream_spawn_pos() -> void:
-	for i : int in numStreams:
-		var direction : int
-		if i % 2 == 0:
-			direction = 1
-		else:
-			direction = -1
-
-		var halfScreen : int = screenSize.x / 2.0
-		# + 20 * direction to account for target srite size; could need changing
-		var posX : int = halfScreen + halfScreen * direction + 20 * direction
-		var posY : int = screenSize.y - (i * screenSize.y / 3.0 / numStreams) - 125
-		var pos : Vector2 = Vector2(posX, posY)
-		streamSpawnPos[i] = pos
 
 func _on_round_time_timeout() -> void:
 	game_over.emit()
@@ -122,6 +107,7 @@ func spawn_thrown_target(target : BaseTarget, initialPos : Vector2, endPos : Vec
 	var halfWayX : float = (endPos.x - initialPos.x) / 2.0
 	target.thrown = true
 	target.position = initialPos
+	target.z_index = randi_range(0, -9)
 	target.trajectory.add_point(initialPos, Vector2.ZERO, Vector2(halfWayX, -height))
 	target.trajectory.add_point(endPos, Vector2(-halfWayX, -height), Vector2.ZERO)
 	

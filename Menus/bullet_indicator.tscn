@@ -7,8 +7,6 @@ font_size = 50
 font_color = Color(0, 0, 0, 1)
 
 [node name="FirstBullet" type="Sprite2D"]
-position = Vector2(28, 28)
-scale = Vector2(0.186667, 0.186667)
 texture = ExtResource("1_3jno4")
 metadata/_edit_use_anchors_ = true
 

@@ -21,23 +21,16 @@ position = Vector2(50.087, 7.62939e-06)
 update_rotation = false
 update_scale = false
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="." node_paths=PackedStringArray("pointMarkers", "componentOwner")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="." node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
 script = ExtResource("2_q8fku")
-pointMarkers = [NodePath("TopLeft"), NodePath("TopRight"), NodePath("BottomLeft"), NodePath("BottomRight")]
+polygon = NodePath("../Hitbox")
 componentOwner = NodePath("..")
-
-[node name="TopLeft" type="Marker2D" parent="ShootablePolygonComponent"]
-
-[node name="TopRight" type="Marker2D" parent="ShootablePolygonComponent"]
-position = Vector2(94, 1.05378e-05)
-
-[node name="BottomLeft" type="Marker2D" parent="ShootablePolygonComponent"]
-position = Vector2(94.0001, 1080)
-
-[node name="BottomRight" type="Marker2D" parent="ShootablePolygonComponent"]
-position = Vector2(7.62939e-06, 1080)
+bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
 
 [node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim")]
 script = ExtResource("3_uvami")
 shootableComponent = NodePath("../ShootablePolygonComponent")
 holeVictim = NodePath("..")
+
+[node name="Hitbox" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 7.83334, 1080, 90.0834, 1080, 90.0834, 2.86102e-06, 0, 0)

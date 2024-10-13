@@ -1,28 +1,43 @@
 class_name InRoundState
 extends GameStateBase
 
+#Main Scenes
+var stageHudComposite : CanvasLayer
+var hud : Hud
+var playerCharacter : PlayerCharacter
+var stage : Stage
+
+#General Variables
+var totalPoints : int = 0
+
 func state_enter() -> void:
 	#Add Gameplay Elements
-	mainRef.stage = (load("res://Stage/stage.tscn") as PackedScene).instantiate()
-	mainRef.hud = (load("res://Menus/hud.tscn") as PackedScene).instantiate()
-	mainRef.playerCharacter = (load("res://Player/player_character.tscn") as PackedScene).instantiate()
-	add_child(mainRef.stage)
-	add_child(mainRef.hud)
-	add_child(mainRef.playerCharacter)
+	stageHudComposite = (load("res://Main/StageHudComposite.tscn") as PackedScene).instantiate()
+	add_child(stageHudComposite)
+	hud = stageHudComposite.get_node("./Hud")
+	stage = stageHudComposite.get_node("./SubViewportContainer/StageViewport/Stage")
+	playerCharacter = stageHudComposite.get_node("./PlayerCharacter")
+	hud.startingMaxAmmo = playerCharacter.maxAmmo
 	
-	mainRef.stage.game_over.connect(mainRef._on_game_end)
-	GameplaySignals.bullet_used.connect(mainRef.hud.progress_chamber)
-	GameplaySignals.bullet_reloaded.connect(mainRef.hud.reload_chamber)
+	stage.game_over.connect(mainRef._on_game_end)
+	GameplaySignals.bullet_used.connect(hud.progress_chamber)
+	GameplaySignals.bullet_reloaded.connect(hud.reload_chamber)
+	GameplaySignals.target_shot.connect(_on_target_shot)
 	print("Entered Round State")
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 
 func state_exit() -> void:
 	#Remove Gameplay Elements
-	mainRef.stage.queue_free()
-	mainRef.hud.queue_free()
-	mainRef.playerCharacter.queue_free()
+	stage.queue_free()
+	hud.queue_free()
+	playerCharacter.queue_free()
 	print("Exited Round State")
 
 func _process(_delta : float) -> void:
-	mainRef.hud.update_timer(mainRef.stage.roundDurationTime.time_left)
+	pass
+	hud.update_timer(stage.roundDurationTime.time_left)
+
+func _on_target_shot(target : BaseTarget) -> void:
+	totalPoints += target.pointValue
+	hud.get_node("ScoreCounter").set_text("Score: %d" % totalPoints)

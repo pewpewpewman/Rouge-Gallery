@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dpbrpdbuomf85"]
+[gd_scene format=3 uid="uid://be8j02owey2st"]
 
-[node name="OptionsMenu" type="Control"]
+[node name="CreditsScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +10,8 @@ grow_vertical = 2
 
 [node name="ReturnToMain" type="Button" parent="."]
 layout_mode = 0
-offset_left = 708.0
-offset_top = 273.0
-offset_right = 819.0
-offset_bottom = 461.0
+offset_left = 1072.0
+offset_top = 512.0
+offset_right = 1256.0
+offset_bottom = 688.0
 text = "go back"

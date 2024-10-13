@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://t2lge0l5wuv3"]
+
+[ext_resource type="PackedScene" uid="uid://b3kk540oalq0n" path="res://Stage/stage.tscn" id="1_hh51s"]
+[ext_resource type="PackedScene" uid="uid://cpla6qnn5a6qq" path="res://Player/player_character.tscn" id="2_qac4n"]
+[ext_resource type="PackedScene" uid="uid://cksvlh028c7ka" path="res://Menus/hud.tscn" id="3_vaqfl"]
+
+[node name="StageHudComposite" type="CanvasLayer"]
+
+[node name="Hud" parent="." instance=ExtResource("3_vaqfl")]
+offset_bottom = 6.10352e-05
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = -1
+anchor_left = -0.00078125
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+stretch = true
+metadata/_edit_use_anchors_ = true
+
+[node name="StageViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1281, 720)
+size_2d_override = Vector2i(1280, 720)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Stage" parent="SubViewportContainer/StageViewport" instance=ExtResource("1_hh51s")]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("2_qac4n")]
