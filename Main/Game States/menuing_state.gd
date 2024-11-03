@@ -5,7 +5,7 @@ extends GameStateBase
 var subMenuPickerScene : PackedScene = preload("res://Menus/Main Menu/sub_menu_select.tscn")
 var optionsMenuScene : PackedScene = preload("res://Menus/Main Menu/options_menu.tscn")
 var highScoreMenuScene : PackedScene = preload("res://Menus/Main Menu/high_scores_menu.tscn")
-var quitScreenScene : PackedScene = preload("res://Menus/Main Menu/high_scores_menu.tscn")
+var quitScreenScene : PackedScene = preload("res://Menus/Main Menu/quit_screen.tscn")
 var roundSetupScene : PackedScene = preload("res://Menus/Main Menu/round_setup.tscn")
 var creditsScene : PackedScene = preload("res://Menus/Main Menu/credits_screen.tscn")
 
@@ -57,8 +57,9 @@ func _on_quit() -> void:
 	if currentMenu != null:
 		currentMenu.queue_free()
 	currentMenu = quitScreenScene.instantiate()
-	currentMenu.get_node("ReturnToMain").pressed.connect(_on_sub_menu)
 	add_child(currentMenu)
+	currentMenu.get_node("ReturnToMain").pressed.connect(_on_sub_menu)
+	currentMenu.get_node("QuitGame").pressed.connect(func () : get_tree().quit())
 
 func _on_round_setup() -> void:
 	if currentMenu != null:
@@ -69,7 +70,6 @@ func _on_round_setup() -> void:
 		start_round.emit()
 	currentMenu.get_node("StartRound").pressed.connect(startRoundEmit)
 	currentMenu.get_node("ReturnToMain").pressed.connect(_on_sub_menu)
-
 
 func _on_credits() -> void:
 	if currentMenu != null:

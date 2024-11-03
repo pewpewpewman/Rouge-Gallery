@@ -5,7 +5,7 @@ extends Node
 var itemDict : Dictionary
 
 func _ready():
-	for i :int in items.size():
+	for i : int in items.size():
 		assert(!itemDict.has(items[i].itemID), "Item dictionary cannot add two of the same item!")
 		itemDict[items[i].itemID] = items[i]
 	print("Grand Dictionary of Items: \n", itemDict)

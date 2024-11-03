@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseItem" load_steps=3 format=3 uid="uid://di7ljowwru6ay"]
+
+[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_tqwau"]
+[ext_resource type="Script" path="res://Items/item_base.gd" id="2_rxboo"]
+
+[resource]
+script = ExtResource("2_rxboo")
+itemName = &"Crispy Cola"
+itemDesc = &"Boost reload speed by 10%, pairs well with some candy"
+itemID = 302
+itemIcon = ExtResource("1_tqwau")

@@ -7,6 +7,9 @@ signal in_shot_range(zIndex : int) #valid objects respond with thier z index
 signal found_highest_z(zIndex : int) # player responds with the highest z index so targets can check if theyre valid to be shot and killed
 signal target_shot(target : BaseTarget)
 
+##Score Signal
+signal through_hole_bonus()
+
 ##HUD Update Signals
 signal bullet_used(numBullets : int, maxAmmo : int, timeToShoot : float)
 signal bullet_reloaded(reloaded : int, maxAmmo : int, timeToReload : float)

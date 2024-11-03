@@ -9,6 +9,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ReturnToMain" type="Button" parent="."]
+layout_mode = 0
 offset_left = 473.0
 offset_top = 524.0
 offset_right = 850.0

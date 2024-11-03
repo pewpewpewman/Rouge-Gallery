@@ -12,8 +12,8 @@ var totalPoints : int = 0
 
 func state_enter() -> void:
 	#Add Gameplay Elements
+	print("Entered Round State")
 	stageHudComposite = (load("res://Main/StageHudComposite.tscn") as PackedScene).instantiate()
-	add_child(stageHudComposite)
 	hud = stageHudComposite.get_node("./Hud")
 	stage = stageHudComposite.get_node("./SubViewportContainer/StageViewport/Stage")
 	playerCharacter = stageHudComposite.get_node("./PlayerCharacter")
@@ -23,8 +23,8 @@ func state_enter() -> void:
 	GameplaySignals.bullet_used.connect(hud.progress_chamber)
 	GameplaySignals.bullet_reloaded.connect(hud.reload_chamber)
 	GameplaySignals.target_shot.connect(_on_target_shot)
-	print("Entered Round State")
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+	add_child(stageHudComposite)
 
 
 func state_exit() -> void:
@@ -35,9 +35,8 @@ func state_exit() -> void:
 	print("Exited Round State")
 
 func _process(_delta : float) -> void:
-	pass
 	hud.update_timer(stage.roundDurationTime.time_left)
 
 func _on_target_shot(target : BaseTarget) -> void:
-	totalPoints += target.pointValue
+	totalPoints += target.pointValue * (1 + playerCharacter.numHolePasses)
 	hud.get_node("ScoreCounter").set_text("Score: %d" % totalPoints)

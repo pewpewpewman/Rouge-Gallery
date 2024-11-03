@@ -14,11 +14,14 @@ func _ready() -> void:
 	GameplaySignals.search_aimed_objects.connect(_on_search_aimed_objects)
 
 func _on_search_aimed_objects(shotLocation : Vector2) -> void:
-	if check_shot(shotLocation) && !check_bullet_holes(shotLocation):
-		GameplaySignals.in_shot_range.emit(componentOwner.z_index)
+	if check_shot(shotLocation):
+		if !check_bullet_holes(shotLocation):
+			GameplaySignals.in_shot_range.emit(componentOwner.z_index)
 		var highestZIndex : int = await GameplaySignals.found_highest_z
 		if highestZIndex == componentOwner.z_index:
 			componentShot.emit(shotLocation)
+		elif highestZIndex < componentOwner.z_index:
+			GameplaySignals.through_hole_bonus.emit()
 
 func check_bullet_holes(shotLocation : Vector2) -> bool:
 	#returns true if the shot overlaps with a bullet hole

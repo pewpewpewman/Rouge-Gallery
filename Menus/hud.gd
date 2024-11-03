@@ -18,19 +18,12 @@ var bulletIndicatorScene : PackedScene = preload("res://Menus/bullet_indicator.t
 @onready var numSpriteWidth : int = minTexRef.texture.atlas.get_width() / 10
 
 #Other Vars
-var startingMaxAmmo : int = 6
+var startingMaxAmmo : int = 0
 
 func _ready() -> void:
 	if startingMaxAmmo <= 0:
 		printerr("HUD was not correctly given max starting ammo! (Or starting ammo is less than one in which case wtf is wrong with you???)")
-	var ammoIndicatorSize = ammoIndicator.size
-	for i : int in startingMaxAmmo:
-		var newSlotText : Sprite2D = bulletIndicatorScene.instantiate()
-		var rot = TAU * i / float(startingMaxAmmo)
-		newSlotText.position = ammoIndicatorSize * 0.5 + ammoIndicatorSize.x / 3.0 * Vector2(sin(-rot), -cos(-rot))
-		newSlotText.scale = Vector2(0.1, 0.1)
-		newSlotText.get_node("Label").text = str(i)
-		ammoIndicator.add_child(newSlotText)
+	update_max_ammo(startingMaxAmmo)
 
 func _process(_delta : float) -> void:
 	debugInfo.set_text("FPS %d" % Engine.get_frames_per_second())
@@ -49,6 +42,26 @@ func update_timer(time: float) -> void:
 	minTexRef.texture.region.position.x = minutes * numSpriteWidth
 	secTensTexRef.texture.region.position.x = secondTens * numSpriteWidth
 	secOnesTexRef.texture.region.position.x = secondsOnes * numSpriteWidth
+
+func update_max_ammo(ammount : int) -> void:
+	#Clear any existing bullets
+	if ammoIndicator.get_child_count() > 0:
+		ammoIndicator.get_children().map(queue_free)
+	
+	var ammoIndicatorSize = ammoIndicator.size
+	var newSlotText : Sprite2D
+	var newSlotTextSize : Vector2
+	var rot : float
+	var dist_from_center : float
+	for i : int in startingMaxAmmo: 
+		newSlotText = bulletIndicatorScene.instantiate()
+		newSlotTextSize = newSlotText.get_rect().size
+		rot = TAU * (i / float(startingMaxAmmo))
+		
+		newSlotText.scale = (ammoIndicatorSize / 4.0) / newSlotTextSize
+		dist_from_center = ammoIndicatorSize.x / 3.0
+		newSlotText.position = ammoIndicatorSize * 0.5 + dist_from_center * Vector2(sin(-rot), -cos(-rot))
+		ammoIndicator.add_child(newSlotText)
 
 func progress_chamber(currentAmmo : int, maxAmmo : int, shotCooldown : float) -> void:
 	var shotBullet : Sprite2D = ammoIndicator.get_child(maxAmmo-currentAmmo - 1)

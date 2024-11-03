@@ -20,9 +20,7 @@ var thrown : bool = false
 var trajectory : Curve2D = Curve2D.new()
 var trajectoryTracker : float = 0.0
 
-#Variable paths for tweener - possible solution to stutter
-#static var trajectoryTrackerPath : NodePath = "trajectoryTracker"
-#static var rotationPath : NodePath = "rotation"
+var num_hole_bonuses : int = 0
 
 func _ready() -> void:
 	assert(shootableComponent != null, "Targets need shot detection components")
@@ -46,7 +44,7 @@ func _on_destroyed():
 	if deathText != null:
 		texture = deathText
 	play_death_anim()
- 
+
 func play_death_anim() -> void:
 	#Get a random direction for the dying animation
 	var deathDirection : int = randi()

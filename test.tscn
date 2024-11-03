@@ -1,12 +1,24 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6a80053gtey2"]
 
-[ext_resource type="PackedScene" uid="uid://kvws4ujrc53u" path="res://Targets/target_stand.tscn" id="1_douxb"]
 [ext_resource type="PackedScene" uid="uid://cpla6qnn5a6qq" path="res://Player/player_character.tscn" id="2_hfacs"]
+[ext_resource type="PackedScene" uid="uid://n2o1f1jf8o0a" path="res://Targets/item_target.tscn" id="2_jrm1h"]
 
 [node name="Node" type="Node"]
 
-[node name="TargetStand" parent="." instance=ExtResource("1_douxb")]
-position = Vector2(272, 72)
-
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_hfacs")]
 position = Vector2(616, 472)
+
+[node name="ItemTarget" parent="." instance=ExtResource("2_jrm1h")]
+position = Vector2(432, 208)
+
+[node name="ItemTarget2" parent="." instance=ExtResource("2_jrm1h")]
+position = Vector2(240, 304)
+
+[node name="ItemTarget3" parent="." instance=ExtResource("2_jrm1h")]
+position = Vector2(984, 352)
+
+[node name="ItemTarget4" parent="." instance=ExtResource("2_jrm1h")]
+position = Vector2(616, 416)
+
+[node name="ItemTarget5" parent="." instance=ExtResource("2_jrm1h")]
+position = Vector2(480, 368)

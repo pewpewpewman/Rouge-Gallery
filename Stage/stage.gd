@@ -4,7 +4,7 @@ extends Node
 #Children References
 @onready var normalTargetTime : Timer = $NormalTargetTime
 @onready var roundDurationTime : Timer = $RoundTime
-@onready var specialTargetTime: Timer = $SpecialTargetTime
+@onready var specialTargetTime : Timer = $SpecialTargetTime
 
 #Target Type Scenes
 var targetStandScene : PackedScene = preload("res://Targets/target_stand.tscn")

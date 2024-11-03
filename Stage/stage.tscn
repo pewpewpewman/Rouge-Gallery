@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Stage/stage.gd" id="1_njkjx"]
 [ext_resource type="Texture2D" uid="uid://dwn834sk55t0m" path="res://Stage/Stage Assets/sky.png" id="2_xtiaa"]
-[ext_resource type="Texture2D" uid="uid://dt0d275iriwr6" path="res://Stage/Stage Assets/foreground1.png" id="3_bssag"]
+[ext_resource type="Texture2D" uid="uid://dt0d275iriwr6" path="res://Stage/Stage Assets/foreground1.png" id="3_hbkr7"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="4_ipbyu"]
 [ext_resource type="Texture2D" uid="uid://copnrqtgrolda" path="res://Stage/Stage Assets/foreground2.png" id="4_swubg"]
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="5_36x5a"]
@@ -31,10 +31,8 @@ offset = Vector2(-9, -29)
 
 [node name="Foreground1" type="Sprite2D" parent="SpriteHolder"]
 z_index = -6
-y_sort_enabled = true
-position = Vector2(649, 389)
-texture = ExtResource("3_bssag")
-offset = Vector2(-9, -29)
+position = Vector2(640, 360)
+texture = ExtResource("3_hbkr7")
 
 [node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
 script = ExtResource("4_ipbyu")
@@ -49,7 +47,7 @@ holeVictim = NodePath("..")
 
 [node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground1"]
 visible = false
-points = PackedVector2Array(-649, -149, -545, -141, -457, -125, -377, -101, -257, -85, -161, -85, -97, -85, 39, -117, 183, -149, 295, -157, 399, -149, 495, -141, 567, -125, 631, -93, 631, 331, -649, 331, -649, -149)
+points = PackedVector2Array(-640, -120, -456, -96, -360, -72, -240, -56, -144, -56, -56, -64, 104, -104, 248, -128, 376, -128, 496, -112, 584, -96, 640, -64, 640, 360, -640, 360, -640, -120)
 
 [node name="Foreground2" type="Sprite2D" parent="SpriteHolder"]
 z_index = -3

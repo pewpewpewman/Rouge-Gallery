@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwdxf1p613wqr"]
+[gd_scene load_steps=6 format=3 uid="uid://dwdxf1p613wqr"]
 
 [ext_resource type="Script" path="res://Items/item_data_base.gd" id="1_b3sg5"]
 [ext_resource type="Script" path="res://Items/item_base.gd" id="2_61ql5"]
 [ext_resource type="Resource" uid="uid://n1aox28a4qee" path="res://Items/Item Instances/sugary_sweets.tres" id="3_bibap"]
 [ext_resource type="Resource" uid="uid://dswcnnptpvcig" path="res://Items/Item Instances/unpopped_kernel.tres" id="4_bw3f2"]
+[ext_resource type="Resource" uid="uid://di7ljowwru6ay" path="res://Items/Item Instances/crispy_cola.tres" id="5_lqyhn"]
 
 [node name="ItemDataBase" type="Node"]
 script = ExtResource("1_b3sg5")
-items = Array[ExtResource("2_61ql5")]([ExtResource("3_bibap"), ExtResource("4_bw3f2")])
+items = Array[ExtResource("2_61ql5")]([ExtResource("3_bibap"), ExtResource("4_bw3f2"), ExtResource("5_lqyhn")])

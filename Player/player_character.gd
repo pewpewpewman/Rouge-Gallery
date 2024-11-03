@@ -10,32 +10,38 @@ extends Node2D
 
 #Shooting Vars
 var canShoot : bool = true
-var shotCooldownTime : float = 1 #measureed in seconds
+var shotCooldownTime : float = 1.0 #measureed in seconds
 var shotReceivers : Array[Node]
 var highestZIndex : int = -50
 
 #Ammo Vars
 var maxAmmo : int = 6
 var currentAmmo : int = maxAmmo
-var totalReloadTime : float = 3
+var totalReloadTime : float = 2
+
+#Score vars
+var numHolePasses : int = 0
 
 func _ready() -> void:
 	shotCooldown.timeout.connect(_on_shot_cooldown)
 	reloadTimer.timeout.connect(reload)
+	GameplaySignals.through_hole_bonus.connect(_on_through_hole_bonus)
 	
 	#Shooting connections
 	GameplaySignals.in_shot_range.connect(_on_in_shot_range)
 	
-	
 	##Item pickup connections
 	ItemDataBase.itemDict[BaseItem.ItemID.SUGARY_SWEETS].on_pickup.connect(_on_sugary_sweet_pickup)
+	ItemDataBase.itemDict[BaseItem.ItemID.CRISPY_COLA].on_pickup.connect(_on_crispy_cola_pickup)
 	
 	##Item loss connections
 	ItemDataBase.itemDict[BaseItem.ItemID.SUGARY_SWEETS].on_loss.connect(_on_sugary_sweet_loss)
+	ItemDataBase.itemDict[BaseItem.ItemID.CRISPY_COLA].on_loss.connect(_on_crispy_cola_loss)
 
 	for i : int in 20: 
 		#ItemDataBase.pick_up_item(BaseItem.ItemID.UNPOPPED_KERNAL)
 		#ItemDataBase.pick_up_item(BaseItem.ItemID.SUGARY_SWEETS)
+		#ItemDataBase.pick_up_item(BaseItem.ItemID.CRISPY_COLA)
 		pass
 
 func _process(_delta : float) -> void:
@@ -52,10 +58,14 @@ func _input(event : InputEvent) -> void:
 func _on_in_shot_range(zIndex : int):
 	highestZIndex = max(highestZIndex, zIndex)
 
+func _on_through_hole_bonus() -> void:
+	numHolePasses += 1
+
 func fire_shot(location : Vector2) -> void:
 	GameplaySignals.search_aimed_objects.emit(location)
 	GameplaySignals.found_highest_z.emit(highestZIndex) #this is basically actually putting the trigger and firing
 	highestZIndex = -50
+	numHolePasses = 0
 
 func firing_routine() -> void:
 		#handle unpopped kernals
@@ -110,9 +120,16 @@ func reload() -> void:
 func _on_sugary_sweet_pickup() -> void:
 	shotCooldownTime -= shotCooldownTime * 0.10
 
+func _on_crispy_cola_pickup() -> void:
+	totalReloadTime -= totalReloadTime * 0.10
+	print("new reload time: ", totalReloadTime)
+
 ##
 ## ITEM LOSS RESPONSES
 ##
 
 func _on_sugary_sweet_loss() -> void:
 	shotCooldownTime += shotCooldownTime * 0.10
+
+func _on_crispy_cola_loss() -> void:
+	totalReloadTime += totalReloadTime * 0.10

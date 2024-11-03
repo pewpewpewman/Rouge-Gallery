@@ -8,7 +8,8 @@ enum ItemID
 {
 	NONE = 0,
 	SUGARY_SWEETS = 4,
-	UNPOPPED_KERNAL = 210
+	UNPOPPED_KERNAL = 210,
+	CRISPY_COLA = 302
 }
 
 signal on_pickup

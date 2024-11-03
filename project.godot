@@ -28,6 +28,18 @@ window/size/mode=4
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
+[file_customization]
+
+folder_colors={
+"res://Components/": "teal",
+"res://Items/": "blue",
+"res://Main/": "gray",
+"res://Menus/": "pink",
+"res://Player/": "red",
+"res://Stage/": "green",
+"res://Targets/": "yellow"
+}
+
 [input]
 
 fire_gun={
