@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3kk540oalq0n"]
+[gd_scene load_steps=9 format=3 uid="uid://b3kk540oalq0n"]
 
 [ext_resource type="Script" path="res://Stage/stage.gd" id="1_njkjx"]
+[ext_resource type="Resource" uid="uid://cm8l7rsk5ylj6" path="res://Stage/stage_1_layout.tres" id="2_2gxh0"]
 [ext_resource type="Texture2D" uid="uid://dwn834sk55t0m" path="res://Stage/Stage Assets/sky.png" id="2_xtiaa"]
 [ext_resource type="Texture2D" uid="uid://dt0d275iriwr6" path="res://Stage/Stage Assets/foreground1.png" id="3_hbkr7"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="4_ipbyu"]
@@ -8,9 +9,10 @@
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="5_36x5a"]
 [ext_resource type="Texture2D" uid="uid://dpyyl3g3v0dy4" path="res://Stage/Stage Assets/foreground3.png" id="5_nxnu7"]
 
-[node name="Stage" type="Node" node_paths=PackedStringArray("streamSpawnPos")]
+[node name="Stage" type="Node" node_paths=PackedStringArray("stream_spawn_pos")]
 script = ExtResource("1_njkjx")
-streamSpawnPos = [NodePath("Foreground3Spawn"), NodePath("Foreground2Spawn"), NodePath("Foreground1Spawn")]
+stage_layout = ExtResource("2_2gxh0")
+stream_spawn_pos = [NodePath("Foreground3Spawn"), NodePath("Foreground2Spawn"), NodePath("Foreground1Spawn")]
 
 [node name="NormalTargetTime" type="Timer" parent="."]
 
@@ -34,16 +36,16 @@ z_index = -6
 position = Vector2(640, 360)
 texture = ExtResource("3_hbkr7")
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("4_ipbyu")
 polygon = NodePath("../Hitbox")
-componentOwner = NodePath("..")
-bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
+component_owner = NodePath("..")
+bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("shootable_component", "hole_victim")]
 script = ExtResource("5_36x5a")
-shootableComponent = NodePath("../ShootablePolygonComponent")
-holeVictim = NodePath("..")
+shootable_component = NodePath("../ShootablePolygonComponent")
+hole_victim = NodePath("..")
 
 [node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground1"]
 visible = false
@@ -56,16 +58,16 @@ position = Vector2(649, 389)
 texture = ExtResource("4_swubg")
 offset = Vector2(-9, -29)
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("4_ipbyu")
 polygon = NodePath("../Hitbox")
-componentOwner = NodePath("..")
-bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
+component_owner = NodePath("..")
+bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground2" node_paths=PackedStringArray("shootable_component", "hole_victim")]
 script = ExtResource("5_36x5a")
-shootableComponent = NodePath("../ShootablePolygonComponent")
-holeVictim = NodePath("..")
+shootable_component = NodePath("../ShootablePolygonComponent")
+hole_victim = NodePath("..")
 
 [node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground2"]
 visible = false
@@ -77,16 +79,16 @@ position = Vector2(649, 389)
 texture = ExtResource("5_nxnu7")
 offset = Vector2(-9, -29)
 
-[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("polygon", "componentOwner", "bulletHoleComponent")]
+[node name="ShootablePolygonComponent" type="Node2D" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("4_ipbyu")
 polygon = NodePath("../Hitbox")
-componentOwner = NodePath("..")
-bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
+component_owner = NodePath("..")
+bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="SpriteHolder/Foreground3" node_paths=PackedStringArray("shootable_component", "hole_victim")]
 script = ExtResource("5_36x5a")
-shootableComponent = NodePath("../ShootablePolygonComponent")
-holeVictim = NodePath("..")
+shootable_component = NodePath("../ShootablePolygonComponent")
+hole_victim = NodePath("..")
 
 [node name="Hitbox" type="Line2D" parent="SpriteHolder/Foreground3"]
 visible = false

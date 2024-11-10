@@ -5,21 +5,21 @@
 [ext_resource type="Script" path="res://Components/Shootable/shootable_circle_component.gd" id="4_4c7w2"]
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="4_n7ie3"]
 
-[node name="BaseTarget" type="Sprite2D" node_paths=PackedStringArray("shootableComponent")]
+[node name="BaseTarget" type="Sprite2D" node_paths=PackedStringArray("shootable_component")]
 z_as_relative = false
 position = Vector2(32, 32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_rljyf")
 region_rect = Rect2(0, 0, 256, 256)
 script = ExtResource("2_ls0ot")
-shootableComponent = NodePath("ShootableCircleComponent")
+shootable_component = NodePath("ShootableCircleComponent")
 
-[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("componentOwner", "bulletHoleComponent")]
+[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("component_owner", "bullet_hole_component")]
 script = ExtResource("4_4c7w2")
-componentOwner = NodePath("..")
-bulletHoleComponent = NodePath("../BulletHoleSpriteComponent")
+component_owner = NodePath("..")
+bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
-[node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootableComponent", "holeVictim")]
+[node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootable_component", "hole_victim")]
 script = ExtResource("4_n7ie3")
-shootableComponent = NodePath("../ShootableCircleComponent")
-holeVictim = NodePath("..")
+shootable_component = NodePath("../ShootableCircleComponent")
+hole_victim = NodePath("..")

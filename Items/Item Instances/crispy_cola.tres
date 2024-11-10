@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_rxboo")
-itemName = &"Crispy Cola"
-itemDesc = &"Boost reload speed by 10%, pairs well with some candy"
-itemID = 302
-itemIcon = ExtResource("1_tqwau")
+item_name = &"Default Name"
+item_desc = &"Default Desc."
+item_id = 302
+item_icon = ExtResource("1_tqwau")

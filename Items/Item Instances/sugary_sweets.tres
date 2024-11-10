@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ujwu8")
-itemName = &"Sugary Sweets"
-itemDesc = &"Boost firing speed by 10%, pairs well with some cola"
-itemID = 4
-itemIcon = ExtResource("1_xum78")
+item_name = &"Default Name"
+item_desc = &"Default Desc."
+item_id = 4
+item_icon = ExtResource("1_xum78")

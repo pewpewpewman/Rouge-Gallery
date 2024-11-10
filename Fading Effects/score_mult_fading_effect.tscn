@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://81s6cfcyyebu"]
+
+[ext_resource type="PackedScene" uid="uid://cpf7fsuc1dgd1" path="res://Fading Effects/fading_effect.tscn" id="1_2kd4k"]
+[ext_resource type="Script" path="res://Fading Effects/score_mult_fading_effect.gd" id="2_6tekr"]
+[ext_resource type="Texture2D" uid="uid://ba4qomdbrwhpe" path="res://Fading Effects/cross.png" id="3_mq18p"]
+[ext_resource type="Texture2D" uid="uid://dcdmkfav201m8" path="res://Fading Effects/streak.png" id="4_uxt55"]
+[ext_resource type="Texture2D" uid="uid://cpmpn3mhyoppq" path="res://Fading Effects/mult_num_decimal.png" id="5_logxx"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6l3sm"]
+load_path = "res://.godot/imported/mult_num_atlas.png-26be342ff76895296fc78c87b2af36bf.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d51gg"]
+atlas = SubResource("CompressedTexture2D_6l3sm")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw4cm"]
+atlas = SubResource("CompressedTexture2D_6l3sm")
+region = Rect2(0, 0, 100, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f57o1"]
+atlas = SubResource("CompressedTexture2D_6l3sm")
+region = Rect2(0, 0, 100, 100)
+
+[node name="ScoreMultFadingEffect" instance=ExtResource("1_2kd4k")]
+script = ExtResource("2_6tekr")
+
+[node name="SpriteSeries" type="HBoxContainer" parent="." index="0"]
+offset_right = 97.0
+offset_bottom = 16.0
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Times" type="TextureRect" parent="SpriteSeries" index="0"]
+layout_mode = 2
+texture = ExtResource("3_mq18p")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Ones" type="TextureRect" parent="SpriteSeries" index="1"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_d51gg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Decimal" type="TextureRect" parent="SpriteSeries" index="2"]
+layout_mode = 2
+texture = ExtResource("5_logxx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Tenths" type="TextureRect" parent="SpriteSeries" index="3"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vw4cm")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hundredths" type="TextureRect" parent="SpriteSeries" index="4"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_f57o1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Type" type="TextureRect" parent="SpriteSeries" index="5"]
+layout_mode = 2
+texture = ExtResource("4_uxt55")
+expand_mode = 3
+stretch_mode = 5

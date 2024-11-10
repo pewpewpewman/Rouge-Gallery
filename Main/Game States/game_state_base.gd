@@ -2,7 +2,7 @@
 class_name GameStateBase
 extends Node
 
-@onready var mainRef : Node = get_parent()
+@onready var main_ref : Node = get_parent()
 
 func state_enter() -> void:
 	print("Entered State")

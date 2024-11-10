@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_smqfp")
-itemName = &"Unpopped Kernel"
-itemDesc = &"Adds an extra random shot to each shot fired - bad for your teeth."
-itemID = 210
-itemIcon = ExtResource("1_phecr")
+item_name = &"Default Name"
+item_desc = &"Default Desc."
+item_id = 210
+item_icon = ExtResource("1_phecr")

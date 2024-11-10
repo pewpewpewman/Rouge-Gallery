@@ -10,15 +10,20 @@ position = Vector2(616, 472)
 
 [node name="ItemTarget" parent="." instance=ExtResource("2_jrm1h")]
 position = Vector2(432, 208)
+item_override = 0
 
 [node name="ItemTarget2" parent="." instance=ExtResource("2_jrm1h")]
 position = Vector2(240, 304)
+item_override = 0
 
 [node name="ItemTarget3" parent="." instance=ExtResource("2_jrm1h")]
 position = Vector2(984, 352)
+item_override = 0
 
 [node name="ItemTarget4" parent="." instance=ExtResource("2_jrm1h")]
 position = Vector2(616, 416)
+item_override = 0
 
 [node name="ItemTarget5" parent="." instance=ExtResource("2_jrm1h")]
 position = Vector2(480, 368)
+item_override = 0

@@ -4,30 +4,30 @@ class_name BulletHoleComponent
 extends Node
 
 #Component Connections
-@export var holeVictim : CanvasItem
+@export var hole_victim : CanvasItem
 
 #Shader Vars
-var bulletHoleShader : Shader = load("res://bullet_holes.gdshader").duplicate()
-var shotLocations : PackedVector2Array = [Vector2(-1.0, -1.0)]
-var unnormalizedShotLocations : PackedVector2Array = [Vector2(-1.0, -1.0)] #needed to track when bullets go through other bullet holes
+var bullet_hole_shader : Shader = load("res://Components/Bullet Holes/bullet_holes.gdshader").duplicate()
+var shot_locations : PackedVector2Array = [Vector2(-1.0, -1.0)]
+var unnormalized_shot_locations : PackedVector2Array = [Vector2(-1.0, -1.0)] #needed to track when bullets go through other bullet holes
 const MAX_BULLET_HOLES : int = 32 #Remember to keep consistant with shader constant
-var shotLocationIndex : int = 0
-var holeRadius : float = 10.0
-var shotLocationsStringName : StringName = "shotLocations"
-var bulletHoleSizeStringName : StringName = "bulletHoleSize"
-var imageScaleStringName : StringName = "imageScale"
+var shot_location_index : int = 0
+var hole_radius : float = 10.0
+var shot_locations_string_name : StringName = "shot_locations"
+var bullet_hole_size_string_name : StringName = "bullet_hole_size"
+var image_scale_string_name : StringName = "image_scale"
 
 func _ready() -> void:
-	assert(holeVictim != null, "Bullet hole component needs a valid canvas item!")
+	assert(hole_victim != null, "Bullet hole component needs a valid canvas item!")
 	
-	shotLocations.resize(MAX_BULLET_HOLES)
-	shotLocations.fill(Vector2(-1.0, -1.0))
+	shot_locations.resize(MAX_BULLET_HOLES)
+	shot_locations.fill(Vector2(-1.0, -1.0))
 	
-	unnormalizedShotLocations.resize(MAX_BULLET_HOLES)
-	unnormalizedShotLocations.fill(Vector2(-1.0, -1.0))
+	unnormalized_shot_locations.resize(MAX_BULLET_HOLES)
+	unnormalized_shot_locations.fill(Vector2(-1.0, -1.0))
 	
-	if (holeVictim.material == null || holeVictim.material is CanvasItemMaterial):
-		holeVictim.material = ShaderMaterial.new()
-	holeVictim.material.shader = bulletHoleShader
-	holeVictim.material.set_shader_parameter(bulletHoleSizeStringName, holeRadius)
-	holeVictim.material.set_shader_parameter(shotLocationsStringName, shotLocations)
+	if (hole_victim.material == null || hole_victim.material is CanvasItemMaterial):
+		hole_victim.material = ShaderMaterial.new()
+	hole_victim.material.shader = bullet_hole_shader
+	hole_victim.material.set_shader_parameter(bullet_hole_size_string_name, hole_radius)
+	hole_victim.material.set_shader_parameter(shot_locations_string_name, shot_locations)

@@ -1,18 +1,18 @@
 extends BaseItem
 
-var extraShotRadius : int = 128 #measured in pixels
-var extraShotCount : int
+var extra_shot_radius : int = 128 #measured in pixels
+var extra_shot_count : int
 
 func pickup() -> void:
-	if numStacks == 0:
-		extraShotCount = 3
+	if num_stacks == 0:
+		extra_shot_count = 3
 	else:
-		extraShotCount += 1
+		extra_shot_count += 1
 	super.pickup()
 	
 func loss() -> void:
 	super.loss()
-	if numStacks == 0:
-		extraShotCount = 0
+	if num_stacks == 0:
+		extra_shot_count = 0
 	else:
-		extraShotCount -= 1
+		extra_shot_count -= 1

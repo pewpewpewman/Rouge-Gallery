@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Range Runners"
+config/version="beta"
 run/main_scene="res://Main/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -24,7 +25,6 @@ GameplaySignals="*res://Main/gameplay_signals.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=4
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
@@ -32,6 +32,7 @@ window/vsync/vsync_mode=0
 
 folder_colors={
 "res://Components/": "teal",
+"res://Fading Effects/": "purple",
 "res://Items/": "blue",
 "res://Main/": "gray",
 "res://Menus/": "pink",
@@ -45,6 +46,11 @@ folder_colors={
 fire_gun={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(122, 21),"global_position":Vector2(129, 57),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+reload={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(58, 0),"global_position":Vector2(65, 36),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 fullscreen_game={

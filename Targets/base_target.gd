@@ -3,73 +3,69 @@ class_name BaseTarget
 extends Sprite2D
 
 #Component Connection
-@export var shootableComponent : ShootableBase
+@export var shootable_component : ShootableBase
 
 #General Use Vars
-var pointValue : int = 0
+var point_value : int = 0
 var destroyed : bool = false
 var dragger : RemoteTransform2D
 
 #Death Animation Vars
-var deathCurve : Curve2D = Curve2D.new()
-var deathAnimationTime : float = 0.0
-@export var deathText : CompressedTexture2D
+var death_curve : Curve2D = Curve2D.new()
+var death_animation_time : float = 0.0
+@export var death_text : CompressedTexture2D
 
 #Thrown Target Vars
 var thrown : bool = false
 var trajectory : Curve2D = Curve2D.new()
-var trajectoryTracker : float = 0.0
+var trajectory_tracker : float = 0.0
 
 var num_hole_bonuses : int = 0
 
 func _ready() -> void:
-	assert(shootableComponent != null, "Targets need shot detection components")
-	shootableComponent.componentShot.connect(_on_was_shot)
+	assert(shootable_component != null, "Targets need shot detection components")
+	shootable_component.component_shot.connect(_on_destroyed.unbind(1))
 
 func _process(_delta: float) -> void:
 	if destroyed:
-		self.position = deathCurve.sample(0, deathAnimationTime)
+		self.position = death_curve.sample(0, death_animation_time)
 	elif thrown:
-		self.position = trajectory.sample(0, trajectoryTracker)
-
-func _on_was_shot(_shotLocation : Vector2i):
-	if !destroyed:
-		GameplaySignals.target_shot.emit(self)
-		_on_destroyed()
+		self.position = trajectory.sample(0, trajectory_tracker)
 
 func _on_destroyed():
-	destroyed = true
-	if dragger != null:
-		dragger.remote_path = ""
-	if deathText != null:
-		texture = deathText
-	play_death_anim()
+	if !destroyed:
+		destroyed = true
+		if dragger != null:
+			dragger.remote_path = ""
+		if death_text != null:
+			texture = death_text
+		play_death_anim()
 
 func play_death_anim() -> void:
 	#Get a random direction for the dying animation
-	var deathDirection : int = randi()
-	if deathDirection % 2 == 0:
-		deathDirection = -1
+	var death_direction : int = randi()
+	if death_direction % 2 == 0:
+		death_direction = -1
 	else:
-		deathDirection = 1
+		death_direction = 1
 	
 	#Find death animation ending values
-	var deathAnimLength = 3.0
-	var deathMagnitudeHoriz : float = randf() * 50.0 + 100.0
-	var deathMagnitudeVert : float =  500.0
-	var screenSize : Vector2i = get_window().get_viewport().get_visible_rect().size
-	var deathPeak : Vector2 =  Vector2(deathMagnitudeHoriz * deathDirection * 1.5, -deathMagnitudeVert)
-	var placeOfDeath : Vector2 = Vector2(deathMagnitudeHoriz * deathDirection, screenSize.y + 100)
+	var death_anim_length = 3.0
+	var death_magnitude_horiz : float = randf() * 50.0 + 100.0
+	var death_magnitude_vert : float =  500.0
+	var screen_size : Vector2i = get_window().get_viewport().get_visible_rect().size
+	var death_peak : Vector2 =  Vector2(death_magnitude_horiz * death_direction * 1.5, -death_magnitude_vert)
+	var place_of_death : Vector2 = Vector2(death_magnitude_horiz * death_direction, screen_size.y + 100)
 	
 	#Add points to death curve
-	deathCurve.add_point(self.position, Vector2.ZERO, deathPeak)
-	deathCurve.add_point(self.position + placeOfDeath, deathPeak, Vector2.ZERO)
+	death_curve.add_point(self.position, Vector2.ZERO, death_peak)
+	death_curve.add_point(self.position + place_of_death, death_peak, Vector2.ZERO)
 	
 	#Add death animation tweener
 	var tween : Tween = self.create_tween()
-	tween.tween_property(self, "deathAnimationTime", 1.0, deathAnimLength).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "death_animation_time", 1.0, death_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.parallel()
-	tween.tween_property(self, "rotation", 4.0 * PI * -deathDirection, deathAnimLength).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "rotation", 4.0 * PI * -death_direction, death_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.finished.connect(queue_free)
 
 func death_free_check() -> void:

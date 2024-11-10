@@ -1,0 +1,118 @@
+[gd_resource type="Resource" script_class="StageLayoutData" load_steps=13 format=3 uid="uid://cm8l7rsk5ylj6"]
+
+[ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="1_cqpnl"]
+[ext_resource type="Script" path="res://Stage/stage_layout_data.gd" id="2_f8uff"]
+
+[sub_resource type="Resource" id="Resource_3f2fg"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_c248j"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_x3suy"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_he6v8"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_wqqes"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_23238"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_gjm14"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_tuaom"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_g3oft"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[sub_resource type="Resource" id="Resource_43aau"]
+script = ExtResource("1_cqpnl")
+type = 0
+item = 0
+time_reward = 0.0
+spawn_point = 0
+movement_type = 0
+time_on_screen = 0.0
+simultaneous = false
+next_time = 0.0
+
+[resource]
+script = ExtResource("2_f8uff")
+data = Array[ExtResource("1_cqpnl")]([SubResource("Resource_3f2fg"), SubResource("Resource_c248j"), SubResource("Resource_x3suy"), SubResource("Resource_he6v8"), SubResource("Resource_wqqes"), SubResource("Resource_23238"), SubResource("Resource_gjm14"), SubResource("Resource_tuaom"), SubResource("Resource_g3oft"), SubResource("Resource_43aau")])

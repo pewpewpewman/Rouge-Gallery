@@ -2,25 +2,25 @@
 class_name TimerTarget
 extends BaseTarget
 
-var timeValue : float
+var time_value : float
 
-signal timer_target_destoryed(timeValue : float)
+signal timer_target_destoryed(time_value : float)
 
 func _ready() -> void:
 	var decider : int = randi_range(0, 100)
 	if decider <= 30:
-		timeValue = 5.0
+		time_value = 5.0
 	elif decider <= 80:
-		timeValue = 10.0
+		time_value = 10.0
 	elif decider <= 90:
-		timeValue = 15.0
+		time_value = 15.0
 	else:
-		timeValue = 20.0
-	#print(timeValue)
-	pointValue = 100
+		time_value = 20.0
+	#print(time_value)
+	point_value = 100
 	super._ready()
 	
 func _on_destroyed():
 	super._on_destroyed()
-	#print("Timer target shot for ", timeValue, " seconds")
-	timer_target_destoryed.emit(timeValue)
+	#print("Timer target shot for ", time_value, " seconds")
+	timer_target_destoryed.emit(time_value)

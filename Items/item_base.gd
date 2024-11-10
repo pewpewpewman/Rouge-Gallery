@@ -15,18 +15,18 @@ enum ItemID
 signal on_pickup
 signal on_loss
 
-@export var itemName : StringName = "Default Name"
-@export var itemDesc : StringName = "Default Desc."
-@export var itemID : ItemID = ItemID.NONE
-@export var itemIcon : CompressedTexture2D = preload("res://icon.svg")
-var numStacks : int = 0
+@export var item_name : StringName = "Default Name"
+@export var item_desc : StringName = "Default Desc."
+@export var item_id : ItemID = ItemID.NONE
+@export var item_icon : CompressedTexture2D = preload("res://icon.svg")
+var num_stacks : int = 0
 
 func pickup() -> void:
-	print("Picked up a " + itemName)
+	print("Picked up a " + item_name)
 	on_pickup.emit()
-	numStacks += 1
+	num_stacks += 1
 
 func loss() -> void:
-	print("Lost a " + itemName)
+	print("Lost a " + item_name)
 	on_loss.emit()
-	numStacks -= 1
+	num_stacks -= 1

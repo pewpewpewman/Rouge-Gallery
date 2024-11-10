@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpf7fsuc1dgd1"]
+
+[ext_resource type="Script" path="res://Fading Effects/fading_effect.gd" id="1_nkeb4"]
+
+[node name="FadingEffect" type="Node2D"]
+script = ExtResource("1_nkeb4")

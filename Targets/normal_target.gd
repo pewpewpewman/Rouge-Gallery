@@ -3,5 +3,5 @@ class_name NormalTarget
 extends BaseTarget
 
 func _ready() -> void:
-	pointValue = 50
+	point_value = 50
 	super._ready()
