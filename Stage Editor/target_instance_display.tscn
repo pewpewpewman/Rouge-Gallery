@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfsrk2y7cfehj"]
+
+[ext_resource type="Script" path="res://Stage Editor/target_instance_display.gd" id="1_tifa7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poigk"]
+bg_color = Color(0.315982, 0.710938, 0.0944214, 1)
+
+[node name="TargetInstanceDisplay" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.1625
+anchor_bottom = 0.405556
+offset_bottom = -0.000244141
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_poigk")
+script = ExtResource("1_tifa7")
+metadata/_edit_use_anchors_ = true
+
+[node name="ElementOrganizer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="Label" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Target # "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TypeSelect" type="OptionButton" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 3
+popup/item_0/text = "Basic"
+popup/item_1/text = "Time"
+popup/item_1/id = 1
+popup/item_2/text = "Item"
+popup/item_2/id = 2
+
+[node name="ItemSelect" type="OptionButton" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimeReward" type="SpinBox" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+step = 0.1
+prefix = "Time Reward:"
+
+[node name="MovementType" type="OptionButton" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+popup/item_0/text = "Scroll"
+popup/item_1/text = "Toss"
+popup/item_1/id = 1
+
+[node name="SpawnPoint" type="OptionButton" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 3
+popup/item_0/text = "High"
+popup/item_1/text = "Mid"
+popup/item_1/id = 1
+popup/item_2/text = "Low"
+popup/item_2/id = 2
+
+[node name="TimeOnScreen" type="SpinBox" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+step = 0.1
+prefix = "Time on Screen:"
+
+[node name="DeleteButton" type="Button" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Delete Target"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Up" type="Button" parent="ElementOrganizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "^ Move Up"
+
+[node name="Down" type="Button" parent="ElementOrganizer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Down V"

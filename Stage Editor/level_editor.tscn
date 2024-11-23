@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://bslakj4epf2oj"]
+
+[ext_resource type="Script" path="res://Stage Editor/level_editor.gd" id="1_fp0vq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pcg0v"]
+bg_color = Color(0.882812, 0.802204, 0.275879, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_536dn"]
+bg_color = Color(0.247421, 0.666513, 0.917969, 1)
+
+[node name="Level Editor" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pcg0v")
+script = ExtResource("1_fp0vq")
+
+[node name="Organizer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Timeline" type="ScrollContainer" parent="Organizer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_536dn")
+metadata/_edit_use_anchors_ = true
+
+[node name="EventOrganizer" type="HBoxContainer" parent="Organizer/Timeline"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 5
+
+[node name="CreateEvent" type="Button" parent="Organizer/Timeline/EventOrganizer"]
+layout_mode = 2
+text = "Add Target Event"
+
+[node name="ExtraHolders" type="HBoxContainer" parent="Organizer"]
+layout_mode = 2
+alignment = 1
+
+[node name="SaveScene" type="Button" parent="Organizer/ExtraHolders"]
+layout_mode = 2
+text = "Save Current Scene"
+metadata/_edit_use_anchors_ = true
+
+[node name="LoadScene" type="Button" parent="Organizer/ExtraHolders"]
+layout_mode = 2
+text = "Load Scene From File"
+metadata/_edit_use_anchors_ = true
+
+[node name="ScenePath" type="TextEdit" parent="Organizer/ExtraHolders"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+placeholder_text = "Stage Name"
+metadata/_edit_use_anchors_ = true

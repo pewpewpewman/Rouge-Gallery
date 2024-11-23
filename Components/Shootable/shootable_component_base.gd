@@ -1,6 +1,6 @@
 #Component for an object getting shot and setting signals to react
 class_name ShootableBase
-extends Node2D
+extends Node
 
 #Owner reference
 @export var component_owner : Node2D

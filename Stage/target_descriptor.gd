@@ -1,4 +1,4 @@
-class_name TargetDescriptior
+class_name TargetDescriptor
 extends Resource
 
 enum TargetTypes {
@@ -7,25 +7,24 @@ enum TargetTypes {
 	ITEM
 }
 
-enum SpawnPoints {
+enum MovementTypes
+{
+	SCROLL,
+	TOSS
+}
+
+enum SpawnPoints
+{
 	HIGH_OR_RIGHT,
 	MID_OR_CENTER,
 	LOW_OR_LEFT,
 }
 
-enum MovementTypes {
-	SCROLL,
-	TOSS
-}
-
 @export_category("Target Info")
-@export var type : TargetTypes
-@export var item : BaseItem.ItemID
-@export var time_reward : float
+@export var type : TargetTypes = TargetTypes.BASIC
+@export var item : BaseItem.ItemID = BaseItem.ItemID.SUGARY_SWEETS
+@export var time_reward : float = 0
 @export_category("Movement Info")
-@export var movement_type : MovementTypes
-@export var spawn_point : SpawnPoints
-@export var time_on_screen : float
-@export_category("Next Target Info")
-@export var simultaneous : bool #false if the next target should be spawned instantly
-@export var next_time : float #time until next target spawns
+@export var movement_type : MovementTypes = MovementTypes.SCROLL
+@export var spawn_point : SpawnPoints = SpawnPoints.MID_OR_CENTER
+@export var time_on_screen : float = 0

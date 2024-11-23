@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_smqfp")
-item_name = &"Default Name"
+item_name = &"Unpopped Kernel"
 item_desc = &"Default Desc."
 item_id = 210
 item_icon = ExtResource("1_phecr")

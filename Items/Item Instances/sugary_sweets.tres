@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ujwu8")
-item_name = &"Default Name"
+item_name = &"Sugary Sweets"
 item_desc = &"Default Desc."
 item_id = 4
 item_icon = ExtResource("1_xum78")

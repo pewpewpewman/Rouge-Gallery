@@ -74,10 +74,8 @@ func reload_chamber(current_ammo : int, max_ammo : int, oneReloadTime : float) -
 	var shot_bullet : Sprite2D = ammo_indicator.get_child(- current_ammo)
 	var tween : Tween = get_tree().create_tween()
 	tween.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	var cleanup_rot : Callable = func(x : Sprite2D):
-		x.rotation = 0
 	tween.tween_property(ammo_indicator, "rotation", ammo_indicator.rotation - TAU / max_ammo, oneReloadTime)
 	shot_bullet.texture = unusued_round_text
 	
 	if current_ammo == max_ammo:
-		tween.tween_callback(cleanup_rot.bind(ammo_indicator))
+		tween.tween_callback(func () : ammo_indicator.rotation = 0)

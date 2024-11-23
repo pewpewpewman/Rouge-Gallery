@@ -1,6 +1,9 @@
 #Global container for all signals relating to gameplay effects
 extends Node
 
+##Game State
+signal round_timer_expire
+
 ##Shooting Communication
 signal search_aimed_objects(location : Vector2) #tests which objects are overlapped by location?
 signal in_shot_range(z_index : int) #valid objects respond with thier z index

@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc5lsseyp4y33"]
+
+[ext_resource type="Script" path="res://Stage Editor/target_timeline_event_display.gd" id="1_pdv5c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8srft"]
+bg_color = Color(0.517343, 0.436615, 0.980469, 1)
+
+[node name="TargetTimelineEventDisplay" type="PanelContainer"]
+anchors_preset = -1
+anchor_right = 0.171875
+anchor_bottom = 0.194444
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_8srft")
+script = ExtResource("1_pdv5c")
+metadata/_edit_use_anchors_ = true
+
+[node name="ElementOrganizer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="EventScroller" type="ScrollContainer" parent="ElementOrganizer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TargetList" type="VBoxContainer" parent="ElementOrganizer/EventScroller"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="CreateTarget" type="Button" parent="ElementOrganizer"]
+layout_mode = 2
+text = "Create Target"
+
+[node name="EventLength" type="SpinBox" parent="ElementOrganizer"]
+layout_mode = 2
+prefix = "Event Length: "
+
+[node name="MoveButtons" type="HBoxContainer" parent="ElementOrganizer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Left" type="Button" parent="ElementOrganizer/MoveButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<- Move Left"
+
+[node name="Right" type="Button" parent="ElementOrganizer/MoveButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move Right ->"
+
+[node name="DeleteEvent" type="Button" parent="ElementOrganizer"]
+layout_mode = 2
+text = "Delete Event
+"

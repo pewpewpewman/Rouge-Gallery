@@ -22,10 +22,10 @@ func state_enter() -> void:
 	player_character = stage_hud_composite.get_node("./PlayerCharacter")
 	hud.starting_max_ammo = player_character.max_ammo
 	hud.get_node("ScoreCounter").set_text("Score: %d \n Streak: %d" % [total_points, player_character.hit_streak])
-	stage.game_over.connect(main_ref._on_game_end)
+	GameplaySignals.round_timer_expire.connect(main_ref._on_game_end)
 	GameplaySignals.bullet_used.connect(hud.progress_chamber)
 	GameplaySignals.bullet_reloaded.connect(hud.reload_chamber)
-	GameplaySignals.object_shot.connect(_on_object_shot)
+	GameplaySignals.object_shot.connect(_on_object_shot, CONNECT_DEFERRED)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 	add_child(stage_hud_composite)
 
@@ -38,19 +38,25 @@ func state_exit() -> void:
 	print("Exited Round State")
 
 func _process(_delta : float) -> void:
-	hud.update_timer(stage.round_duration_time.time_left)
+	hud.update_timer(stage.round_timer.time_left)
 
 func _on_object_shot(object : Node) -> void:
+	var streak_mult : float
+	var pent_mult : float
+	var score_mult_graphics : Callable = func():
+			var effect_spawn_pos : Vector2 = player_character.position + Vector2(10, -10)
+			if player_character.hit_streak > 1:
+				var fade_effect_streak : ScoreMultFadingEffect = score_mult_fade.instantiate()
+				stage.add_child(fade_effect_streak)
+				fade_effect_streak.initalize_with_mult_data(effect_spawn_pos, player_character.position + Vector2(100 + randi_range(30, 50), -250), 1.5, streak_mult, ScoreMultFadingEffect.MultTypes.STREAK)
+			if player_character.num_hole_passes > 0:
+				var fade_effect_pent : ScoreMultFadingEffect = score_mult_fade.instantiate()
+				stage.add_child(fade_effect_pent)
+				fade_effect_pent.initalize_with_mult_data(effect_spawn_pos, player_character.position + Vector2(-100 - randi_range(30, 50), -250), 1.5, pent_mult, ScoreMultFadingEffect.MultTypes.PENETRATION)
+	
 	if object != null && object is BaseTarget:
-		var streak_mult = player_character.hit_streak / 5.0
-		var pent_mult = 1 + player_character.num_hole_passes
-		total_points += object.point_value * streak_mult * pent_mult
-		if player_character.hit_streak > 0:
-			var fade_effect_streak : ScoreMultFadingEffect = score_mult_fade.instantiate()
-			stage.add_child(fade_effect_streak)
-			fade_effect_streak.initalize_with_mult_data(player_character.position + Vector2(10, -10), player_character.position + Vector2(100 + randi_range(30, 50), -250), 1.5, streak_mult, ScoreMultFadingEffect.MultTypes.STREAK)
-		if player_character.num_hole_passes > 0:
-			var fade_effect_pent : ScoreMultFadingEffect = score_mult_fade.instantiate()
-			stage.add_child(fade_effect_pent)
-			fade_effect_pent.initalize_with_mult_data(player_character.position + Vector2(-10, -10), player_character.position + Vector2(-100 - randi_range(30, 50), -250), 1.5, pent_mult, ScoreMultFadingEffect.MultTypes.PENETRATION)
-	hud.get_node("ScoreCounter").call_deferred("set_text", "Score: %d \n Streak: %d" % [total_points, player_character.hit_streak])
+			streak_mult = 1 + player_character.hit_streak / 5.0
+			pent_mult = 1 + player_character.num_hole_passes
+			total_points += object.point_value * streak_mult * pent_mult
+			score_mult_graphics.call_deferred()
+	hud.get_node("ScoreCounter").set_text("Score: %d \n Streak: %d" % [total_points, player_character.hit_streak])

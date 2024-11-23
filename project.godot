@@ -37,6 +37,7 @@ folder_colors={
 "res://Main/": "gray",
 "res://Menus/": "pink",
 "res://Player/": "red",
+"res://Stage Editor/": "blue",
 "res://Stage/": "green",
 "res://Targets/": "yellow"
 }

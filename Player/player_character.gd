@@ -27,11 +27,11 @@ var num_hole_passes : int = 0
 var hit_streak : int = 0
 
 func _ready() -> void:
-	GameplaySignals.through_hole_bonus.connect(_on_through_hole_bonus)
-	GameplaySignals.object_shot.connect(_on_object_shot)
+	GameplaySignals.through_hole_bonus.connect(func () -> void : num_hole_passes += 1)
+	GameplaySignals.object_shot.connect(func (object : Node) -> void : shot_object = object)
 	
 	#Shooting connections
-	GameplaySignals.in_shot_range.connect(_on_in_shot_range)
+	GameplaySignals.in_shot_range.connect(func (a_z_index : int) -> void : highest_z_index = max(highest_z_index, a_z_index))
 	
 	##Item pickup connections
 	ItemDataBase.items_dict[BaseItem.ItemID.SUGARY_SWEETS].on_pickup.connect(_on_sugary_sweet_pickup)
@@ -41,7 +41,7 @@ func _ready() -> void:
 	ItemDataBase.items_dict[BaseItem.ItemID.SUGARY_SWEETS].on_loss.connect(_on_sugary_sweet_loss)
 	ItemDataBase.items_dict[BaseItem.ItemID.CRISPY_COLA].on_loss.connect(_on_crispy_cola_loss)
 
-	for i : int in 20: 
+	for i : int in 3: 
 		#ItemDataBase.pick_up_item(BaseItem.ItemID.UNPOPPED_KERNAL)
 		#ItemDataBase.pick_up_item(BaseItem.ItemID.SUGARY_SWEETS)
 		#ItemDataBase.pick_up_item(BaseItem.ItemID.CRISPY_COLA)
@@ -58,15 +58,6 @@ func _input(event : InputEvent) -> void:
 	if (event is InputEventMouseMotion):
 		self.position = event.position
 
-func _on_in_shot_range(z_index : int):
-	highest_z_index = max(highest_z_index, z_index)
-
-func _on_through_hole_bonus() -> void:
-	num_hole_passes += 1
-
-func _on_object_shot(object : Node):
-	shot_object = object
-
 func fire_shot(location : Vector2) -> void:
 	GameplaySignals.search_aimed_objects.emit(location)
 	GameplaySignals.found_highest_z.emit(highest_z_index) #this is basically actually putting the trigger and firing
@@ -78,6 +69,7 @@ func firing_routine() -> void:
 		fire_shot(self.global_position)
 		current_ammo -= 1
 		GameplaySignals.bullet_used.emit(current_ammo, max_ammo, shot_cooldown_time)
+		shot_object = await GameplaySignals.object_shot
 		if shot_object != null && shot_object is BaseTarget:
 			hit_streak += 1
 		else:
@@ -88,11 +80,10 @@ func firing_routine() -> void:
 		var unpopped_kernel_ref : BaseItem = ItemDataBase.items_dict[BaseItem.ItemID.UNPOPPED_KERNAL]
 		for i : int in unpopped_kernel_ref.extra_shot_count:
 			var shotMag : float = randf_range(0.0, unpopped_kernel_ref.extra_shot_radius)
-			var shotDeg : float = randf_range(0, 2.0 * PI)
+			var shotDeg : float = randf_range(0, TAU)
 			var shotX : float = shotMag * cos(shotDeg)
 			var shotY : float = shotMag * sin(shotDeg)
 			fire_shot(self.global_position + Vector2(shotX, shotY))
-			
 
 ##
 ## ITEM PICKUP RESPONSES

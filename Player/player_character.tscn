@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Player/player_character.gd" id="1_lo317"]
 [ext_resource type="Texture2D" uid="uid://jpq8qfsq7feg" path="res://Player/inner.png" id="2_lpds0"]
 [ext_resource type="Texture2D" uid="uid://bjtgnw6s5c7ra" path="res://Player/outer.png" id="3_j8ker"]
-[ext_resource type="Script" path="res://Player/regular_state.gd" id="4_rm41j"]
-[ext_resource type="Script" path="res://Player/reloading_state.gd" id="4_yhnp1"]
-[ext_resource type="Script" path="res://Player/cooldown_state.gd" id="5_rm5iy"]
+[ext_resource type="Script" path="res://Player/Player States/regular_state.gd" id="4_rm41j"]
+[ext_resource type="Script" path="res://Player/Player States/reloading_state.gd" id="4_yhnp1"]
+[ext_resource type="Script" path="res://Player/Player States/cooldown_state.gd" id="5_rm5iy"]
 
 [node name="PlayerCharacter" type="Node2D"]
 z_index = 3

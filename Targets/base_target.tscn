@@ -6,15 +6,13 @@
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="4_n7ie3"]
 
 [node name="BaseTarget" type="Sprite2D" node_paths=PackedStringArray("shootable_component")]
-z_as_relative = false
-position = Vector2(32, 32)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_rljyf")
 region_rect = Rect2(0, 0, 256, 256)
 script = ExtResource("2_ls0ot")
 shootable_component = NodePath("ShootableCircleComponent")
 
-[node name="ShootableCircleComponent" type="Node2D" parent="." node_paths=PackedStringArray("component_owner", "bullet_hole_component")]
+[node name="ShootableCircleComponent" type="Node" parent="." node_paths=PackedStringArray("component_owner", "bullet_hole_component")]
 script = ExtResource("4_4c7w2")
 component_owner = NodePath("..")
 bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
