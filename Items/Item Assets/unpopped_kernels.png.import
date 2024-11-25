@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fswlynkjlghn"
-path="res://.godot/imported/broken_pole_top.png-1c461d896b86fc970ef0e22234ea85fc.ctex"
+uid="uid://uxc5sdk0n3iy"
+path="res://.godot/imported/unpopped_kernels.png-4660176cd10457912280d96c71fed23f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Targets/Target Assets/broken_pole_top.png"
-dest_files=["res://.godot/imported/broken_pole_top.png-1c461d896b86fc970ef0e22234ea85fc.ctex"]
+source_file="res://Items/Item Assets/unpopped_kernels.png"
+dest_files=["res://.godot/imported/unpopped_kernels.png-4660176cd10457912280d96c71fed23f.ctex"]
 
 [params]
 

@@ -94,7 +94,7 @@ func _on_sugary_sweet_pickup() -> void:
 
 func _on_crispy_cola_pickup() -> void:
 	total_reload_time -= total_reload_time * 0.10
-	print("new reload time: ", total_reload_time)
+	#print("new reload time: ", total_reload_time)
 
 ##
 ## ITEM LOSS RESPONSES

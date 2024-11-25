@@ -20,7 +20,7 @@ func _on_gui_input(event : InputEvent) -> void:
 	if (event is InputEventMouseButton && event.pressed):
 
 		var hole_victim_size : Vector2 = hole_victim_ui.size * hole_victim_ui.scale
-		print(hole_victim_ui.size)
+		#print(hole_victim_ui.size)
 		
 		# player.global_position - hole_victim_ui.global_position gets you a vector pointing to where on the sprite the shot occured
 		# .roated(-hole_victim_ui.global_rotation) is to correct the difference vector so we're basically working in unrotated space

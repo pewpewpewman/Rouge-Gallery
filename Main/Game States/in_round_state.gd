@@ -15,7 +15,7 @@ var total_points : int = 0
 
 func state_enter() -> void:
 	#Add Gameplay Elements
-	print("Entered Round State")
+	#print("Entered Round State")
 	stage_hud_composite = (load("res://Main/stage_hud_composite.tscn") as PackedScene).instantiate()
 	hud = stage_hud_composite.get_node("./Hud")
 	stage = stage_hud_composite.get_node("./SubViewportContainer/StageViewport/Stage")
@@ -35,7 +35,7 @@ func state_exit() -> void:
 	stage.queue_free()
 	hud.queue_free()
 	player_character.queue_free()
-	print("Exited Round State")
+	#print("Exited Round State")
 
 func _process(_delta : float) -> void:
 	hud.update_timer(stage.round_timer.time_left)
@@ -58,5 +58,6 @@ func _on_object_shot(object : Node) -> void:
 			streak_mult = 1 + player_character.hit_streak / 5.0
 			pent_mult = 1 + player_character.num_hole_passes
 			total_points += object.point_value * streak_mult * pent_mult
+			#print(object.point_value)
 			score_mult_graphics.call_deferred()
 	hud.get_node("ScoreCounter").set_text("Score: %d \n Streak: %d" % [total_points, player_character.hit_streak])

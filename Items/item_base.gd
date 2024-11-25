@@ -22,11 +22,11 @@ signal on_loss
 var num_stacks : int = 0
 
 func pickup() -> void:
-	print("Picked up a " + item_name)
+	#print("Picked up a " + item_name)
 	on_pickup.emit()
 	num_stacks += 1
 
 func loss() -> void:
-	print("Lost a " + item_name)
+	#print("Lost a " + item_name)
 	on_loss.emit()
 	num_stacks -= 1

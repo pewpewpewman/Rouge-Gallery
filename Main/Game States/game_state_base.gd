@@ -5,10 +5,12 @@ extends Node
 @onready var main_ref : Node = get_parent()
 
 func state_enter() -> void:
-	print("Entered State")
+	pass
+	#print("Entered State")
 
 func state_exit() -> void:
-	print("state exited")
+	pass
+	#print("state exited")
 
 func _process(_delta : float) -> void:
 	pass

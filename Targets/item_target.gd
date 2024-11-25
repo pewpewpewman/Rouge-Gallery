@@ -6,12 +6,13 @@ extends BaseTarget
 @export var use_override : bool = false
 
 var item : BaseItem
-func _ready():
-	if use_override:
-		var item_choice = randi_range(0, ItemDataBase.items.size() - 1)
-		item = ItemDataBase.items[item_choice]
 
-	$Label.text = "THIS IS A " + item.item_name
+func _ready():
+	if !use_override:
+		item = ItemDataBase.items_dict[description.item]
+	else:
+		item = ItemDataBase.items_dict[item_override]
+	$Image/ItemImage.texture = item.item_icon
 	super._ready()
 
 func _on_destroyed():

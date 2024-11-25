@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3lms5v0w0lsn"
-path="res://.godot/imported/pole.png-09b2eb0a9d6707fc14c0543ff9b4b511.ctex"
+uid="uid://86t85fxvn7o7"
+path="res://.godot/imported/time_target.png-b49de00d58df5a06229b389086600a5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Targets/Target Assets/pole.png"
-dest_files=["res://.godot/imported/pole.png-09b2eb0a9d6707fc14c0543ff9b4b511.ctex"]
+source_file="res://Targets/Target Assets/time_target.png"
+dest_files=["res://.godot/imported/time_target.png-b49de00d58df5a06229b389086600a5b.ctex"]
 
 [params]
 

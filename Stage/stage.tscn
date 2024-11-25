@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b3kk540oalq0n"]
 
 [ext_resource type="Script" path="res://Stage/stage.gd" id="1_njkjx"]
-[ext_resource type="Resource" uid="uid://bqxdxmtsth8xd" path="res://Stage Editor/Made Stages/example_stage.tres" id="2_1s636"]
+[ext_resource type="Resource" uid="uid://bqxdxmtsth8xd" path="res://Stage Editor/Made Stages/example_stage.tres" id="2_7qpir"]
 [ext_resource type="Texture2D" uid="uid://dwn834sk55t0m" path="res://Stage/Stage Assets/sky.png" id="2_xtiaa"]
 [ext_resource type="Texture2D" uid="uid://dt0d275iriwr6" path="res://Stage/Stage Assets/foreground1.png" id="3_hbkr7"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="4_ipbyu"]
@@ -29,13 +29,13 @@ point_count = 3
 
 [sub_resource type="Curve2D" id="Curve2D_7rmlr"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -40, 0, 100, 0, -100, 0, -500, 0, 0, 0, 0, 0, -40)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -80, 0, 100, 0, -100, 0, -500, 0, 0, 0, 0, 0, -80)
 }
 point_count = 3
 
 [node name="Stage" type="Node" node_paths=PackedStringArray("scroll_paths", "throw_paths")]
 script = ExtResource("1_njkjx")
-stage_layout = ExtResource("2_1s636")
+stage_layout = ExtResource("2_7qpir")
 scroll_paths = [NodePath("SpriteHolder/Foreground1/HighScroll"), NodePath("SpriteHolder/Foreground2/MiddleScroll"), NodePath("SpriteHolder/Foreground3/LowScroll")]
 throw_paths = [NodePath("SpriteHolder/RightThrow"), NodePath("SpriteHolder/MiddleThrow"), NodePath("SpriteHolder/LeftThrow")]
 

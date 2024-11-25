@@ -1,37 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6a80053gtey2"]
+[gd_scene load_steps=10 format=3 uid="uid://b6a80053gtey2"]
 
 [ext_resource type="PackedScene" uid="uid://cpla6qnn5a6qq" path="res://Player/player_character.tscn" id="2_hfacs"]
-[ext_resource type="PackedScene" uid="uid://n2o1f1jf8o0a" path="res://Targets/item_target.tscn" id="2_jrm1h"]
-[ext_resource type="PackedScene" uid="uid://kvws4ujrc53u" path="res://Targets/target_stand.tscn" id="3_hkuie"]
+[ext_resource type="PackedScene" uid="uid://kvws4ujrc53u" path="res://Targets/target_stand.tscn" id="3_s0vic"]
+[ext_resource type="PackedScene" uid="uid://crjqxgw0iewr0" path="res://Targets/normal_target.tscn" id="4_nii3f"]
+[ext_resource type="PackedScene" uid="uid://n2o1f1jf8o0a" path="res://Targets/item_target.tscn" id="5_es561"]
+[ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="5_whedk"]
+[ext_resource type="PackedScene" uid="uid://cbmh8gdq738ur" path="res://Targets/timer_target.tscn" id="6_ilb17"]
+
+[sub_resource type="Resource" id="Resource_37p15"]
+script = ExtResource("5_whedk")
+type = 0
+item = 4
+time_reward = 0.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 0.0
+
+[sub_resource type="Resource" id="Resource_6up8o"]
+script = ExtResource("5_whedk")
+type = 0
+item = 4
+time_reward = 0.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 0.0
+
+[sub_resource type="Resource" id="Resource_0cixt"]
+script = ExtResource("5_whedk")
+type = 0
+item = 4
+time_reward = 20.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 0.0
 
 [node name="Node" type="Node"]
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("2_hfacs")]
 position = Vector2(616, 472)
 
-[node name="ItemTarget" parent="." instance=ExtResource("2_jrm1h")]
-position = Vector2(432, 208)
-item_override = 0
-use_override = false
+[node name="TargetStand" parent="." instance=ExtResource("3_s0vic")]
+position = Vector2(872, 136)
 
-[node name="TargetStand" parent="ItemTarget" instance=ExtResource("3_hkuie")]
+[node name="NormalTarget" parent="." instance=ExtResource("4_nii3f")]
+position = Vector2(376, 424)
+description = SubResource("Resource_37p15")
 
-[node name="ItemTarget2" parent="." instance=ExtResource("2_jrm1h")]
-position = Vector2(240, 304)
-item_override = 0
-use_override = false
+[node name="ItemTarget" parent="." instance=ExtResource("5_es561")]
+position = Vector2(360, 304)
+item_override = 4
+use_override = true
+description = SubResource("Resource_6up8o")
 
-[node name="ItemTarget3" parent="." instance=ExtResource("2_jrm1h")]
-position = Vector2(984, 352)
-item_override = 0
-use_override = false
-
-[node name="ItemTarget4" parent="." instance=ExtResource("2_jrm1h")]
-position = Vector2(616, 416)
-item_override = 0
-use_override = false
-
-[node name="ItemTarget5" parent="." instance=ExtResource("2_jrm1h")]
-position = Vector2(480, 368)
-item_override = 0
-use_override = false
+[node name="TimerTarget" parent="." instance=ExtResource("6_ilb17")]
+position = Vector2(256, 376)
+description = SubResource("Resource_0cixt")

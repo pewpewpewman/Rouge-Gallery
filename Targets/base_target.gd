@@ -9,15 +9,15 @@ extends PathFollow2D
 @onready var image  : Sprite2D = $Image
 
 #Target Data
-var description : TargetDescriptor
-var point_value : float = 10
+@export var description : TargetDescriptor #export used for debugging
+var point_value : float = 0
 
 #Death Vars
 var destroyed : bool = false
 var death_response : Callable
 var death_curve : Curve2D = Curve2D.new()
 var death_animation_time : float = 0.0
-var death_text : CompressedTexture2D
+@export var death_text : CompressedTexture2D
 
 #Movement Tween
 var tween : Tween
@@ -25,29 +25,16 @@ var tween : Tween
 #Scoring Vars
 var num_hole_bonuses : int = 0
 
-#Other Scenes
-var target_stand_scene : PackedScene = preload("res://Targets/target_stand.tscn")
-
 func _ready() -> void:
 	assert(shootable_component != null, "Targets need shot detection components")
 	shootable_component.component_shot.connect(_on_destroyed.unbind(1))
 	assert(description != null, "Target is supposed to have info attached")
-	
-	#Initialize Death Response
-	match description.type:
-		TargetDescriptor.TargetTypes.BASIC:
-			death_response = basic_death
-		TargetDescriptor.TargetTypes.TIME:
-			death_response = time_death
-		TargetDescriptor.TargetTypes.ITEM:
-			death_response = item_death
 	
 	#Start Movement Tweener
 	tween = create_tween()
 	match description.movement_type:
 		TargetDescriptor.MovementTypes.SCROLL:
 			tween.tween_property(self, "progress_ratio", 1, description.time_on_screen)
-			z_index = 1
 		TargetDescriptor.MovementTypes.TOSS:
 			tween.tween_property(self, "rotation", PI, description.time_on_screen / 2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 			tween.parallel()
@@ -56,9 +43,8 @@ func _ready() -> void:
 			tween.tween_property(self, "rotation", TAU, description.time_on_screen / 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 			tween.parallel()
 			tween.tween_property(self, "progress_ratio", 1, description.time_on_screen / 2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
-			z_index = 1
 
-func _process(delta : float) -> void:
+func _process(_delta : float) -> void:
 	if destroyed:
 		position = death_curve.sample(0, death_animation_time)
 	
@@ -68,17 +54,8 @@ func _on_destroyed() -> void:
 		tween.kill()
 		if death_text != null:
 			image.texture = death_text
-		death_response.call()
 		play_death_anim()
-
-func basic_death() -> void:
-	pass
-	
-func time_death() -> void:
-	pass
-
-func item_death() -> void:
-	pass
+		GameplaySignals.object_shot.emit(self)
 
 func play_death_anim() -> void:
 	#Get a random direction for the dying animation
@@ -101,7 +78,7 @@ func play_death_anim() -> void:
 	death_curve.add_point(self.position + place_of_death, death_peak, Vector2.ZERO)
 	
 	#Add death animation tweener
-	var tween : Tween = self.create_tween()
+	tween = self.create_tween()
 	tween.tween_property(self, "death_animation_time", 1.0, death_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	tween.parallel()
 	tween.tween_property(self, "rotation", 6.0 * PI * -death_direction, death_anim_length).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

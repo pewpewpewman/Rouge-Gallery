@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BaseItem" load_steps=3 format=3 uid="uid://n1aox28a4qee"]
 
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_xum78"]
+[ext_resource type="Texture2D" uid="uid://bkyrror58h4ia" path="res://Items/Item Assets/sugary_sweets.png" id="1_qgno6"]
 [ext_resource type="Script" path="res://Items/item_base.gd" id="2_ujwu8"]
 
 [resource]
@@ -8,4 +8,4 @@ script = ExtResource("2_ujwu8")
 item_name = &"Sugary Sweets"
 item_desc = &"Default Desc."
 item_id = 4
-item_icon = ExtResource("1_xum78")
+item_icon = ExtResource("1_qgno6")

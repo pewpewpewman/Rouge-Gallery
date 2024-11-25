@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://crjqxgw0iewr0"]
+[gd_scene load_steps=5 format=3 uid="uid://crjqxgw0iewr0"]
 
 [ext_resource type="PackedScene" uid="uid://dhvwaqhy5mi32" path="res://Targets/base_target.tscn" id="1_qdtgu"]
-[ext_resource type="Texture2D" uid="uid://ccppo65x8yt0v" path="res://Targets/Target Assets/smiling_target.png" id="2_rq8we"]
 [ext_resource type="Script" path="res://Targets/normal_target.gd" id="2_uyk0m"]
+[ext_resource type="Texture2D" uid="uid://ky7jyaljbeqv" path="res://Targets/Target Assets/normal_target.png" id="3_2ffuf"]
+[ext_resource type="Texture2D" uid="uid://li1khm3l1pbc" path="res://Targets/Target Assets/normal_target_death.png" id="3_cqbx0"]
 
 [node name="NormalTarget" instance=ExtResource("1_qdtgu")]
 scale = Vector2(0.187134, 0.187135)
-texture = ExtResource("2_rq8we")
-region_rect = Rect2(0, 0, 684, 344)
 script = ExtResource("2_uyk0m")
+death_text = ExtResource("3_cqbx0")
+
+[node name="Image" parent="." index="0"]
+position = Vector2(-1.71661e-05, 0)
+scale = Vector2(0.750002, 0.749998)
+texture = ExtResource("3_2ffuf")

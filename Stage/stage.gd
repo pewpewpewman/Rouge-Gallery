@@ -7,7 +7,6 @@ extends Node
 
 #Target Type Scenes
 var target_stand_scene : PackedScene = preload("res://Targets/target_stand.tscn")
-var base_target_scene : PackedScene = preload("res://Targets/base_target.tscn")
 var normal_target_scene : PackedScene = preload("res://Targets/normal_target.tscn")
 var timer_target_scene : PackedScene = preload("res://Targets/timer_target.tscn")
 var item_target_scene : PackedScene = preload("res://Targets/item_target.tscn")
@@ -33,13 +32,27 @@ func _ready() -> void:
 	round_timer.timeout.connect(GameplaySignals.round_timer_expire.emit)
 	round_timer.start(round_length)
 			
+	#Other connections
+	GameplaySignals.object_shot.connect(_on_object_shot)
+	
 	#Spawn target cycle setup
 	for event_dec : TargetEventDescriptor in stage_layout.data:
 		for target_dec : TargetDescriptor in event_dec.contained_targets:
+			
 			#Describe the target
-			var target : BaseTarget = base_target_scene.instantiate() as BaseTarget
+			#Initialize correct type
+			var target_scene : PackedScene
+			match target_dec.type:
+				TargetDescriptor.TargetTypes.BASIC:
+					target_scene = normal_target_scene
+				TargetDescriptor.TargetTypes.TIME:
+					target_scene = timer_target_scene
+				TargetDescriptor.TargetTypes.ITEM:
+					target_scene = item_target_scene
+			var target : BaseTarget = target_scene.instantiate()# as BaseTarget
 			target.description = target_dec
 			
+			#Initialize correct movement
 			var path : Path2D = (scroll_paths if target_dec.movement_type == TargetDescriptor.MovementTypes.SCROLL else throw_paths)[target_dec.spawn_point]
 			if target_dec.movement_type == TargetDescriptor.MovementTypes.SCROLL:
 				var target_stand : TargetStand = target_stand_scene.instantiate()
@@ -57,3 +70,7 @@ func increase_timer(time_value : float):
 	round_timer.stop()
 	initial_time += time_value
 	round_timer.start(initial_time)
+
+func _on_object_shot(object : Node) -> void:
+	if object is TimerTarget:
+		increase_timer(object.description.time_reward)

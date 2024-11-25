@@ -1,0 +1,51 @@
+[gd_resource type="Resource" script_class="StageLayoutData" load_steps=10 format=3 uid="uid://83m454me2d2q"]
+
+[ext_resource type="Script" path="res://Stage/target_event_descriptor.gd" id="1_fb7l4"]
+[ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="2_eu4yj"]
+[ext_resource type="Script" path="res://Stage/stage_layout_data.gd" id="2_tumal"]
+
+[sub_resource type="Resource" id="Resource_saf8t"]
+script = ExtResource("2_eu4yj")
+type = 2
+item = 4
+time_reward = 0.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 5.0
+
+[sub_resource type="Resource" id="Resource_agc6i"]
+script = ExtResource("1_fb7l4")
+length = 5.0
+contained_targets = Array[ExtResource("2_eu4yj")]([SubResource("Resource_saf8t")])
+
+[sub_resource type="Resource" id="Resource_e8mee"]
+script = ExtResource("2_eu4yj")
+type = 2
+item = 210
+time_reward = 0.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 5.0
+
+[sub_resource type="Resource" id="Resource_ot7tr"]
+script = ExtResource("1_fb7l4")
+length = 5.0
+contained_targets = Array[ExtResource("2_eu4yj")]([SubResource("Resource_e8mee")])
+
+[sub_resource type="Resource" id="Resource_k50vo"]
+script = ExtResource("2_eu4yj")
+type = 2
+item = 302
+time_reward = 0.0
+movement_type = 0
+spawn_point = 1
+time_on_screen = 5.0
+
+[sub_resource type="Resource" id="Resource_l12cq"]
+script = ExtResource("1_fb7l4")
+length = 5.0
+contained_targets = Array[ExtResource("2_eu4yj")]([SubResource("Resource_k50vo")])
+
+[resource]
+script = ExtResource("2_tumal")
+data = Array[ExtResource("1_fb7l4")]([SubResource("Resource_agc6i"), SubResource("Resource_ot7tr"), SubResource("Resource_l12cq")])

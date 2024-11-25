@@ -2,26 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://dhvwaqhy5mi32" path="res://Targets/base_target.tscn" id="1_0nfa6"]
 [ext_resource type="Script" path="res://Targets/item_target.gd" id="2_7ey31"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_i8rg7"]
-font_color = Color(0, 0, 0, 1)
+[ext_resource type="Texture2D" uid="uid://7e7ptld1sue4" path="res://Targets/Target Assets/item_target.png" id="3_7imdt"]
 
 [node name="ItemTarget" instance=ExtResource("1_0nfa6")]
 script = ExtResource("2_7ey31")
-itemOverride = 0
+item_override = 0
+use_override = false
 
-[node name="Label" type="Label" parent="." index="2"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -64.0
-offset_right = -64.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "THIS IS AN ITEM ATRGET"
-label_settings = SubResource("LabelSettings_i8rg7")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Image" parent="." index="0"]
+texture = ExtResource("3_7imdt")
+
+[node name="ItemImage" type="Sprite2D" parent="Image" index="0"]
+scale = Vector2(2, 2)

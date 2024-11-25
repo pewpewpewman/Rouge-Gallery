@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BaseItem" load_steps=3 format=3 uid="uid://di7ljowwru6ay"]
 
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_tqwau"]
+[ext_resource type="Texture2D" uid="uid://h3e1vaheulvr" path="res://Items/Item Assets/crispy_cola.png" id="1_h7h8w"]
 [ext_resource type="Script" path="res://Items/item_base.gd" id="2_rxboo"]
 
 [resource]
@@ -8,4 +8,4 @@ script = ExtResource("2_rxboo")
 item_name = &"Crispy Cola"
 item_desc = &"Default Desc."
 item_id = 302
-item_icon = ExtResource("1_tqwau")
+item_icon = ExtResource("1_h7h8w")

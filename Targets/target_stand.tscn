@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://kvws4ujrc53u"]
 
-[ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_ryqwq"]
 [ext_resource type="Script" path="res://Targets/target_stand.gd" id="2_7bqrq"]
+[ext_resource type="Texture2D" uid="uid://b3lms5v0w0lsn" path="res://Targets/Target Assets/pole.png" id="2_ftd5v"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="2_q8fku"]
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="3_uvami"]
 
@@ -13,8 +13,10 @@ rotates = false
 script = ExtResource("2_7bqrq")
 
 [node name="Image" type="Sprite2D" parent="."]
-texture = ExtResource("1_ryqwq")
-offset = Vector2(0, 540)
+position = Vector2(-1.13687e-13, 12)
+scale = Vector2(2.08889, 1)
+texture = ExtResource("2_ftd5v")
+offset = Vector2(4.56546e-07, 348)
 
 [node name="ShootablePolygonComponent" type="Node" parent="." node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("2_q8fku")
@@ -30,5 +32,5 @@ hole_victim = NodePath("../Image")
 [node name="Hitbox" type="Line2D" parent="."]
 visible = false
 position = Vector2(-31.3334, 12)
-points = PackedVector2Array(-7.83334, -12, -7.83334, 1068, 74.4167, 1068, 74.4167, -12, -7.83334, -12)
-width = 1.0
+points = PackedVector2Array(-7.83334, -12, 4.76837e-05, 708, 62.6667, 708, 74.4167, -12, -7.83334, -12)
+width = 5.0

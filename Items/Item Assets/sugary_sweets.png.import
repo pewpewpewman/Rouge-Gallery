@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccppo65x8yt0v"
-path="res://.godot/imported/smiling_target.png-9172110f7d2302f3772920bd800c2b0f.ctex"
+uid="uid://bkyrror58h4ia"
+path="res://.godot/imported/sugary_sweets.png-fe7265f7747a72cb26c6642aeb9784d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Targets/Target Assets/smiling_target.png"
-dest_files=["res://.godot/imported/smiling_target.png-9172110f7d2302f3772920bd800c2b0f.ctex"]
+source_file="res://Items/Item Assets/sugary_sweets.png"
+dest_files=["res://.godot/imported/sugary_sweets.png-fe7265f7747a72cb26c6642aeb9784d9.ctex"]
 
 [params]
 

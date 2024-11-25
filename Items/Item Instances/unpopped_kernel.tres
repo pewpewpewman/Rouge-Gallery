@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://dswcnnptpvcig"]
 
-[ext_resource type="Texture2D" uid="uid://dn2tqeq0nxeun" path="res://icon.svg" id="1_phecr"]
+[ext_resource type="Texture2D" uid="uid://uxc5sdk0n3iy" path="res://Items/Item Assets/unpopped_kernels.png" id="1_2k8tg"]
 [ext_resource type="Script" path="res://Items/Item Scripts/unpopped_kernel.gd" id="2_smqfp"]
 
 [resource]
@@ -8,4 +8,4 @@ script = ExtResource("2_smqfp")
 item_name = &"Unpopped Kernel"
 item_desc = &"Default Desc."
 item_id = 210
-item_icon = ExtResource("1_phecr")
+item_icon = ExtResource("1_2k8tg")
