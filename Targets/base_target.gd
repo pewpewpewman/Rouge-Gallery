@@ -1,9 +1,12 @@
 #Base Class for targets that appear
 class_name BaseTarget
-extends Sprite2D
+extends PathFollow2D
 
 #Component Connection
 @export var shootable_component : ShootableCircleComponent
+
+#Child References
+@onready var image  : Sprite2D = $Image
 
 #Target Data
 var description : TargetDescriptor
@@ -16,9 +19,8 @@ var death_curve : Curve2D = Curve2D.new()
 var death_animation_time : float = 0.0
 var death_text : CompressedTexture2D
 
-#Movement Vars
-var trajectory : Curve2D = Curve2D.new()
-var trajectory_tracker : float = 0.0
+#Movement Tween
+var tween : Tween
 
 #Scoring Vars
 var num_hole_bonuses : int = 0
@@ -41,44 +43,31 @@ func _ready() -> void:
 			death_response = item_death
 	
 	#Start Movement Tweener
-	var tweener : Tween = self.create_tween()
+	tween = create_tween()
 	match description.movement_type:
 		TargetDescriptor.MovementTypes.SCROLL:
+			tween.tween_property(self, "progress_ratio", 1, description.time_on_screen)
 			z_index = 1
-			var target_stand : Sprite2D = target_stand_scene.instantiate()
-			add_child(target_stand)
 		TargetDescriptor.MovementTypes.TOSS:
+			tween.tween_property(self, "rotation", PI, description.time_on_screen / 2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+			tween.parallel()
+			tween.tween_property(self, "progress_ratio", 0.5, description.time_on_screen / 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+			tween.set_parallel(false)
+			tween.tween_property(self, "rotation", TAU, description.time_on_screen / 2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+			tween.parallel()
+			tween.tween_property(self, "progress_ratio", 1, description.time_on_screen / 2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_EXPO)
 			z_index = 1
-			var spawn_x : float = (description.spawn_point + 1) * get_viewport().size.x / 4
-			var screen_size : Vector2 = get_viewport().size
-			var height : float = 2 * screen_size.y / 5
-			var initial_pos : Vector2 = Vector2(spawn_x, screen_size.y)
-			
-			trajectory.add_point(initial_pos)
-			trajectory.add_point(Vector2(spawn_x, height))
-			trajectory.add_point(initial_pos)
-			
-			position = initial_pos
-			tweener.tween_property(self, "rotation", TAU, description.time_on_screen)
-			tweener.parallel()
-			tweener.set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_SINE)
-	tweener.tween_property(self, "trajectory_tracker", 1, description.time_on_screen)
-	#tweener.finished.connect(func () : if !destroyed: queue_free())
 
 func _process(delta : float) -> void:
-	if !destroyed:
-		position = trajectory.sample(0, trajectory_tracker)
-		if description.movement_type == TargetDescriptor.MovementTypes.SCROLL:
-			pass
-			#print(trajectory.point_count)
-	else:
+	if destroyed:
 		position = death_curve.sample(0, death_animation_time)
 	
 func _on_destroyed() -> void:
 	if !destroyed:
 		destroyed = true
+		tween.kill()
 		if death_text != null:
-			texture = death_text
+			image.texture = death_text
 		death_response.call()
 		play_death_anim()
 

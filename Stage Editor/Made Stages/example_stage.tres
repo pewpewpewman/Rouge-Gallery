@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="2_vvh5b"]
 [ext_resource type="Script" path="res://Stage/stage_layout_data.gd" id="3_x1s7r"]
 
-[sub_resource type="Resource" id="Resource_t1248"]
+[sub_resource type="Resource" id="Resource_s83sg"]
 script = ExtResource("2_vvh5b")
 type = 1
 item = 302
@@ -13,12 +13,12 @@ movement_type = 0
 spawn_point = 1
 time_on_screen = 4.0
 
-[sub_resource type="Resource" id="Resource_g5wsb"]
+[sub_resource type="Resource" id="Resource_h3iyg"]
 script = ExtResource("1_7qiad")
 length = 3.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_t1248")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_s83sg")])
 
-[sub_resource type="Resource" id="Resource_reb1d"]
+[sub_resource type="Resource" id="Resource_qgrif"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -27,7 +27,7 @@ movement_type = 0
 spawn_point = 0
 time_on_screen = 2.0
 
-[sub_resource type="Resource" id="Resource_f6c0g"]
+[sub_resource type="Resource" id="Resource_elrwt"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -36,12 +36,12 @@ movement_type = 0
 spawn_point = 2
 time_on_screen = 6.0
 
-[sub_resource type="Resource" id="Resource_vndtn"]
+[sub_resource type="Resource" id="Resource_uwfhj"]
 script = ExtResource("1_7qiad")
 length = 4.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_reb1d"), SubResource("Resource_f6c0g")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_qgrif"), SubResource("Resource_elrwt")])
 
-[sub_resource type="Resource" id="Resource_pkbcd"]
+[sub_resource type="Resource" id="Resource_h0s6y"]
 script = ExtResource("2_vvh5b")
 type = 1
 item = 302
@@ -50,16 +50,16 @@ movement_type = 1
 spawn_point = 0
 time_on_screen = 1.5
 
-[sub_resource type="Resource" id="Resource_0fhlw"]
+[sub_resource type="Resource" id="Resource_nwpmi"]
 script = ExtResource("2_vvh5b")
 type = 2
 item = 4
 time_reward = 0.0
 movement_type = 1
-spawn_point = 0
+spawn_point = 1
 time_on_screen = 1.7
 
-[sub_resource type="Resource" id="Resource_jrn8c"]
+[sub_resource type="Resource" id="Resource_rj5j7"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -68,12 +68,12 @@ movement_type = 1
 spawn_point = 2
 time_on_screen = 3.0
 
-[sub_resource type="Resource" id="Resource_kv6hp"]
+[sub_resource type="Resource" id="Resource_g8vdb"]
 script = ExtResource("1_7qiad")
 length = 1.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_pkbcd"), SubResource("Resource_0fhlw"), SubResource("Resource_jrn8c")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_h0s6y"), SubResource("Resource_nwpmi"), SubResource("Resource_rj5j7")])
 
-[sub_resource type="Resource" id="Resource_dp4gu"]
+[sub_resource type="Resource" id="Resource_ym0k7"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -82,12 +82,12 @@ movement_type = 0
 spawn_point = 1
 time_on_screen = 3.0
 
-[sub_resource type="Resource" id="Resource_ww0mu"]
+[sub_resource type="Resource" id="Resource_7qgfm"]
 script = ExtResource("1_7qiad")
 length = 3.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_dp4gu")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_ym0k7")])
 
-[sub_resource type="Resource" id="Resource_mmyhb"]
+[sub_resource type="Resource" id="Resource_q5pk7"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -96,7 +96,7 @@ movement_type = 0
 spawn_point = 2
 time_on_screen = 5.0
 
-[sub_resource type="Resource" id="Resource_svaql"]
+[sub_resource type="Resource" id="Resource_ve42n"]
 script = ExtResource("2_vvh5b")
 type = 1
 item = 302
@@ -105,12 +105,12 @@ movement_type = 0
 spawn_point = 0
 time_on_screen = 3.0
 
-[sub_resource type="Resource" id="Resource_bad5y"]
+[sub_resource type="Resource" id="Resource_byi6h"]
 script = ExtResource("1_7qiad")
 length = 3.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_mmyhb"), SubResource("Resource_svaql")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_q5pk7"), SubResource("Resource_ve42n")])
 
-[sub_resource type="Resource" id="Resource_wbn1g"]
+[sub_resource type="Resource" id="Resource_ax20i"]
 script = ExtResource("2_vvh5b")
 type = 0
 item = 302
@@ -119,7 +119,7 @@ movement_type = 1
 spawn_point = 0
 time_on_screen = 2.0
 
-[sub_resource type="Resource" id="Resource_5hv4k"]
+[sub_resource type="Resource" id="Resource_qk80t"]
 script = ExtResource("2_vvh5b")
 type = 2
 item = 210
@@ -128,12 +128,12 @@ movement_type = 0
 spawn_point = 1
 time_on_screen = 4.0
 
-[sub_resource type="Resource" id="Resource_nx5ya"]
+[sub_resource type="Resource" id="Resource_ks7no"]
 script = ExtResource("1_7qiad")
 length = 5.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_wbn1g"), SubResource("Resource_5hv4k")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_ax20i"), SubResource("Resource_qk80t")])
 
-[sub_resource type="Resource" id="Resource_qwqf8"]
+[sub_resource type="Resource" id="Resource_1uvao"]
 script = ExtResource("2_vvh5b")
 type = 1
 item = 302
@@ -142,7 +142,7 @@ movement_type = 0
 spawn_point = 0
 time_on_screen = 2.0
 
-[sub_resource type="Resource" id="Resource_lxivk"]
+[sub_resource type="Resource" id="Resource_sssdi"]
 script = ExtResource("2_vvh5b")
 type = 2
 item = 4
@@ -151,11 +151,11 @@ movement_type = 0
 spawn_point = 2
 time_on_screen = 5.0
 
-[sub_resource type="Resource" id="Resource_cp4ql"]
+[sub_resource type="Resource" id="Resource_xhmvn"]
 script = ExtResource("1_7qiad")
 length = 0.0
-contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_qwqf8"), SubResource("Resource_lxivk")])
+contained_targets = Array[ExtResource("2_vvh5b")]([SubResource("Resource_1uvao"), SubResource("Resource_sssdi")])
 
 [resource]
 script = ExtResource("3_x1s7r")
-data = Array[ExtResource("1_7qiad")]([SubResource("Resource_g5wsb"), SubResource("Resource_vndtn"), SubResource("Resource_kv6hp"), SubResource("Resource_ww0mu"), SubResource("Resource_bad5y"), SubResource("Resource_nx5ya"), SubResource("Resource_cp4ql")])
+data = Array[ExtResource("1_7qiad")]([SubResource("Resource_h3iyg"), SubResource("Resource_uwfhj"), SubResource("Resource_g8vdb"), SubResource("Resource_7qgfm"), SubResource("Resource_byi6h"), SubResource("Resource_ks7no"), SubResource("Resource_xhmvn")])

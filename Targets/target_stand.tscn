@@ -1,36 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://kvws4ujrc53u"]
+[gd_scene load_steps=5 format=3 uid="uid://kvws4ujrc53u"]
 
 [ext_resource type="Texture2D" uid="uid://8kn4vrybcoi5" path="res://Targets/Target Assets/pole.png" id="1_ryqwq"]
+[ext_resource type="Script" path="res://Targets/target_stand.gd" id="2_7bqrq"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="2_q8fku"]
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="3_uvami"]
 
-[node name="TargetStand" type="Sprite2D"]
-z_index = -1
-z_as_relative = false
+[node name="TargetStand" type="PathFollow2D"]
 texture_repeat = 2
 position = Vector2(0, -1.90735e-06)
 scale = Vector2(0.255319, 0.666667)
+rotates = false
+script = ExtResource("2_7bqrq")
+
+[node name="Image" type="Sprite2D" parent="."]
 texture = ExtResource("1_ryqwq")
-centered = false
-region_rect = Rect2(0, 0, 96, 632)
+offset = Vector2(0, 540)
 
-[node name="TargetDragger" type="RemoteTransform2D" parent="."]
-editor_description = "Used to control the movement of the target up until its shot"
-y_sort_enabled = true
-position = Vector2(50.087, 7.62939e-06)
-update_rotation = false
-update_scale = false
-
-[node name="ShootablePolygonComponent" type="Node2D" parent="." node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
+[node name="ShootablePolygonComponent" type="Node" parent="." node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("2_q8fku")
 polygon = NodePath("../Hitbox")
-component_owner = NodePath("..")
+component_owner = NodePath("../Image")
 bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
 [node name="BulletHoleSpriteComponent" type="Node" parent="." node_paths=PackedStringArray("shootable_component", "hole_victim")]
 script = ExtResource("3_uvami")
 shootable_component = NodePath("../ShootablePolygonComponent")
-hole_victim = NodePath("..")
+hole_victim = NodePath("../Image")
 
 [node name="Hitbox" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 7.83334, 1080, 90.0834, 1080, 90.0834, 2.86102e-06, 0, 0)
+visible = false
+position = Vector2(-31.3334, 12)
+points = PackedVector2Array(-7.83334, -12, -7.83334, 1068, 74.4167, 1068, 74.4167, -12, -7.83334, -12)
+width = 1.0

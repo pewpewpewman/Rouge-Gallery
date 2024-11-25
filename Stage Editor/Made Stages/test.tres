@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="2_x7noe"]
 [ext_resource type="Script" path="res://Stage/stage_layout_data.gd" id="3_57rwt"]
 
-[sub_resource type="Resource" id="Resource_frj1g"]
+[sub_resource type="Resource" id="Resource_m4yl6"]
 script = ExtResource("2_x7noe")
 type = 0
 item = 4
@@ -13,20 +13,20 @@ movement_type = 0
 spawn_point = 1
 time_on_screen = 5.0
 
-[sub_resource type="Resource" id="Resource_meosw"]
+[sub_resource type="Resource" id="Resource_325a7"]
 script = ExtResource("2_x7noe")
 type = 0
 item = 4
 time_reward = 0.0
 movement_type = 1
 spawn_point = 1
-time_on_screen = 2.5
+time_on_screen = 1.0
 
-[sub_resource type="Resource" id="Resource_0ddnu"]
+[sub_resource type="Resource" id="Resource_h6vbb"]
 script = ExtResource("1_f4w2d")
 length = 0.0
-contained_targets = Array[ExtResource("2_x7noe")]([SubResource("Resource_frj1g"), SubResource("Resource_meosw")])
+contained_targets = Array[ExtResource("2_x7noe")]([SubResource("Resource_m4yl6"), SubResource("Resource_325a7")])
 
 [resource]
 script = ExtResource("3_57rwt")
-data = Array[ExtResource("1_f4w2d")]([SubResource("Resource_0ddnu")])
+data = Array[ExtResource("1_f4w2d")]([SubResource("Resource_h6vbb")])

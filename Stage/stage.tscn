@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3kk540oalq0n"]
+[gd_scene load_steps=13 format=3 uid="uid://b3kk540oalq0n"]
 
 [ext_resource type="Script" path="res://Stage/stage.gd" id="1_njkjx"]
-[ext_resource type="Resource" uid="uid://c3y0af3ifjr12" path="res://Stage Editor/Made Stages/test.tres" id="2_eut11"]
+[ext_resource type="Resource" uid="uid://bqxdxmtsth8xd" path="res://Stage Editor/Made Stages/example_stage.tres" id="2_1s636"]
 [ext_resource type="Texture2D" uid="uid://dwn834sk55t0m" path="res://Stage/Stage Assets/sky.png" id="2_xtiaa"]
 [ext_resource type="Texture2D" uid="uid://dt0d275iriwr6" path="res://Stage/Stage Assets/foreground1.png" id="3_hbkr7"]
 [ext_resource type="Script" path="res://Components/Shootable/shootable_polygon_component.gd" id="4_ipbyu"]
@@ -9,16 +9,35 @@
 [ext_resource type="Script" path="res://Components/Bullet Holes/bullet_hole_sprite_component.gd" id="5_36x5a"]
 [ext_resource type="Texture2D" uid="uid://dpyyl3g3v0dy4" path="res://Stage/Stage Assets/foreground3.png" id="5_nxnu7"]
 
-[sub_resource type="Curve2D" id="Curve2D_icwds"]
+[sub_resource type="Curve2D" id="Curve2D_mqlx3"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -640, 88, -79.049, 64.3655, 79.049, -64.3655, -512, 56, -53.4873, 23.9589, 53.4873, -23.9589, -368, 8, -53.166, -1.18921, 53.166, 1.18921, -232, -24, -67.3477, -30.3065, 67.3477, 30.3065, -56, -8, -85.3071, -25.8166, 85.3071, 25.8166, 104, 104, -65.57, 0.788736, 65.57, -0.788736, 288, 112, -57.1121, 33.8741, 57.1121, -33.8741, 536, 96, 0, 0, 0, 0, 640, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -640, -16, -54.2587, 18.1902, 54.2587, -18.1902, -560, -72, 0, 0, 0, 0, -440, -56, -60.4762, -3.77976, 60.4762, 3.77976, -256, 8, -70.5556, 11.3393, 70.5556, -11.3393, -56, 0, -44.7012, 26.7801, 44.7012, -26.7801, 112, -56, -58.6891, -25.3403, 58.6891, 25.3403, 280, -56, -80.6349, -8.81945, 80.6349, 8.81945, 448, 48, 0, 0, 0, 0, 640, -40)
 }
 point_count = 9
 
-[node name="Stage" type="Node" node_paths=PackedStringArray("target_lines")]
+[sub_resource type="Curve2D" id="Curve2D_icwds"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -640, 88, -85.7397, 5.33936, 85.7397, -5.33936, -464, 16, -43.7727, -0.854172, 43.7727, 0.854172, -192, 80, -70.6103, -2.57546, 70.6103, 2.57546, 32, 56, -65.57, 0.788736, 65.57, -0.788736, 288, 112, -35.1112, 14.1677, 35.1112, -14.1677, 504, 120, 0, 0, 0, 0, 640, 0)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_8sqd8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -640, 216, -261.569, 1.40222, 261.569, -1.40222, 0, 160, 0, 0, 0, 0, 640, 216)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_7rmlr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -40, 0, 100, 0, -100, 0, -500, 0, 0, 0, 0, 0, -40)
+}
+point_count = 3
+
+[node name="Stage" type="Node" node_paths=PackedStringArray("scroll_paths", "throw_paths")]
 script = ExtResource("1_njkjx")
-stage_layout = ExtResource("2_eut11")
-target_lines = [NodePath("SpriteHolder/Foreground1/Path"), null, NodePath("SpriteHolder/Foreground3/Path")]
+stage_layout = ExtResource("2_1s636")
+scroll_paths = [NodePath("SpriteHolder/Foreground1/HighScroll"), NodePath("SpriteHolder/Foreground2/MiddleScroll"), NodePath("SpriteHolder/Foreground3/LowScroll")]
+throw_paths = [NodePath("SpriteHolder/RightThrow"), NodePath("SpriteHolder/MiddleThrow"), NodePath("SpriteHolder/LeftThrow")]
 
 [node name="RoundTimer" type="Timer" parent="."]
 one_shot = true
@@ -29,19 +48,19 @@ one_shot = true
 [node name="SpriteHolder" type="Node2D" parent="."]
 
 [node name="Sky" type="Sprite2D" parent="SpriteHolder"]
-z_index = -9
-position = Vector2(649, 389)
+z_index = -40
+position = Vector2(648, 389)
 texture = ExtResource("2_xtiaa")
 offset = Vector2(-9, -29)
 
 [node name="Foreground1" type="Sprite2D" parent="SpriteHolder"]
-z_index = -6
+z_index = -30
 position = Vector2(640, 360)
 texture = ExtResource("3_hbkr7")
 
 [node name="ShootablePolygonComponent" type="Node" parent="SpriteHolder/Foreground1" node_paths=PackedStringArray("polygon", "component_owner", "bullet_hole_component")]
 script = ExtResource("4_ipbyu")
-polygon = NodePath("../Path")
+polygon = NodePath("../Hitbox")
 component_owner = NodePath("..")
 bullet_hole_component = NodePath("../BulletHoleSpriteComponent")
 
@@ -55,13 +74,11 @@ visible = false
 points = PackedVector2Array(-640, -120, -456, -96, -360, -72, -240, -56, -144, -56, -56, -64, 104, -104, 248, -128, 376, -128, 496, -112, 584, -96, 640, -64, 640, 360, -640, 360, -640, -120)
 width = 1.0
 
-[node name="Path" type="Line2D" parent="SpriteHolder/Foreground1"]
-visible = false
-points = PackedVector2Array(-640, -40, -328, 0, 64, -40, 200, -16, 240, 32, 304, 128, 408, 152, 472, 112, 504, 56, 528, 16, 576, -40, 640, -56)
-width = 1.0
+[node name="HighScroll" type="Path2D" parent="SpriteHolder/Foreground1"]
+curve = SubResource("Curve2D_mqlx3")
 
 [node name="Foreground2" type="Sprite2D" parent="SpriteHolder"]
-z_index = -3
+z_index = -20
 position = Vector2(640, 360)
 texture = ExtResource("4_swubg")
 
@@ -81,10 +98,11 @@ visible = false
 points = PackedVector2Array(-640, 16, -592, 16, -544, 8, -496, -16, -440, -48, -384, -64, -344, -72, -280, -80, -216, -80, -144, -80, -64, -48, 16, -8, 88, 32, 216, 72, 320, 80, 448, 88, 512, 80, 584, 32, 608, -16, 640, -56, 640, 360, -640, 360, -640, 16)
 width = 1.0
 
-[node name="Path2D" type="Path2D" parent="SpriteHolder/Foreground2"]
+[node name="MiddleScroll" type="Path2D" parent="SpriteHolder/Foreground2"]
 curve = SubResource("Curve2D_icwds")
 
 [node name="Foreground3" type="Sprite2D" parent="SpriteHolder"]
+z_index = -10
 position = Vector2(640, 360)
 texture = ExtResource("5_nxnu7")
 
@@ -104,7 +122,18 @@ visible = false
 points = PackedVector2Array(-641, 123, -641, 355, 639, 363, 640, 200, 615, 195, 583, 171, 567, 107, 543, 51, 519, 35, 471, 11, 423, 3, 375, 27, 327, 75, 279, 115, 223, 139, 135, 131, 71, 107, 7, 99, -65, 107, -89, 91, -121, 59, -177, 35, -233, 43, -297, 75, -353, 107, -425, 131, -505, 147, -561, 155, -585, 139, -617, 123, -641, 123)
 width = 1.0
 
-[node name="Path" type="Line2D" parent="SpriteHolder/Foreground3"]
-visible = false
-points = PackedVector2Array(-640, 224, -392, 176, -216, 72, -96, 160, 200, 184, 312, 128, 384, 72, 464, 56, 520, 152, 640, 224)
-width = 1.0
+[node name="LowScroll" type="Path2D" parent="SpriteHolder/Foreground3"]
+position = Vector2(0, -33)
+curve = SubResource("Curve2D_8sqd8")
+
+[node name="LeftThrow" type="Path2D" parent="SpriteHolder"]
+position = Vector2(320, 720)
+curve = SubResource("Curve2D_7rmlr")
+
+[node name="MiddleThrow" type="Path2D" parent="SpriteHolder"]
+position = Vector2(640, 720)
+curve = SubResource("Curve2D_7rmlr")
+
+[node name="RightThrow" type="Path2D" parent="SpriteHolder"]
+position = Vector2(960, 720)
+curve = SubResource("Curve2D_7rmlr")

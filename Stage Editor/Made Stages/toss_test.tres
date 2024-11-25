@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="StageLayoutData" load_steps=9 format=3 uid="uid://d6jywdm8av87"]
+
+[ext_resource type="Script" path="res://Stage/target_event_descriptor.gd" id="1_8xxpk"]
+[ext_resource type="Script" path="res://Stage/target_descriptor.gd" id="2_e3fdd"]
+[ext_resource type="Script" path="res://Stage/stage_layout_data.gd" id="2_tbino"]
+
+[sub_resource type="Resource" id="Resource_h12bw"]
+script = ExtResource("2_e3fdd")
+type = 0
+item = 4
+time_reward = 0.0
+movement_type = 1
+spawn_point = 1
+time_on_screen = 2.0
+
+[sub_resource type="Resource" id="Resource_pna7a"]
+script = ExtResource("1_8xxpk")
+length = 3.0
+contained_targets = Array[ExtResource("2_e3fdd")]([SubResource("Resource_h12bw")])
+
+[sub_resource type="Resource" id="Resource_74p3q"]
+script = ExtResource("2_e3fdd")
+type = 0
+item = 4
+time_reward = 0.0
+movement_type = 1
+spawn_point = 1
+time_on_screen = 5.0
+
+[sub_resource type="Resource" id="Resource_e1tk5"]
+script = ExtResource("1_8xxpk")
+length = 3.0
+contained_targets = Array[ExtResource("2_e3fdd")]([SubResource("Resource_74p3q")])
+
+[sub_resource type="Resource" id="Resource_bl5kp"]
+script = ExtResource("1_8xxpk")
+length = 0.0
+contained_targets = Array[ExtResource("2_e3fdd")]([])
+
+[resource]
+script = ExtResource("2_tbino")
+data = Array[ExtResource("1_8xxpk")]([SubResource("Resource_pna7a"), SubResource("Resource_e1tk5"), SubResource("Resource_bl5kp")])

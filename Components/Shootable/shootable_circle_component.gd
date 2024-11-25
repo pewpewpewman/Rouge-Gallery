@@ -9,4 +9,4 @@ func _ready():
 		target_radius = component_owner.texture.get_width() * component_owner.scale.x / 2.0
 
 func check_shot(shot_location : Vector2) -> bool:
-	return Geometry2D.is_point_in_circle(shot_location, component_owner.position, target_radius)
+	return Geometry2D.is_point_in_circle(shot_location, component_owner.global_position, target_radius)
